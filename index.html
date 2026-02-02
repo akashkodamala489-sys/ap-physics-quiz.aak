@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Intermediate Physics Quiz - Board & IIT JEE Preparation</title>
+    <meta name="description" content="Complete physics quiz for AP Intermediate students with 700 questions, AI explanations, and marks-based scoring system">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(160deg, #0a0e1a 0%, #111827 40%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb1 {
+            top: -15%;
+            left: -8%;
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(99,102,241,0.13) 0%, transparent 70%);
+        }
+
+        .orb2 {
+            bottom: -18%;
+            right: -8%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 28px 0 20px;
+        }
+
+        .header-icon {
+            font-size: 46px;
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: rgba(255,255,255,0.035);
+            border-radius: 10px;
+            padding: 10px 4px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .stat-icon {
+            font-size: 16px;
+        }
+
+        .stat-value {
+            font-size: 19px;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+
+        .stat-label {
+            font-size: 9.5px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .chapter-card {
+            background: rgba(255,255,255,0.035);
+            border-radius: 13px;
+            padding: 14px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.065);
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .chapter-card:hover {
+            background: rgba(255,255,255,0.075);
+            transform: translateY(-2px);
+        }
+
+        .chapter-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #10b981;
+            color: #fff;
+            font-size: 8.5px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 9px;
+        }
+
+        .chapter-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .chapter-num {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .chapter-name {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #e2e8f0;
+            line-height: 1.3;
+        }
+
+        .chapter-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 10px;
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 4px 0;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            height: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.35s ease;
+        }
+
+        .score-ticker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .chapter-badge-quiz {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 7px;
+            padding: 4px 9px;
+        }
+
+        .score-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-label {
+            font-size: 9px;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .score-value {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .question-card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 14px;
+            padding: 18px 18px 14px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .marks-badge {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .marks-badge span {
+            border-radius: 18px;
+            padding: 3px 11px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .question-text {
+            font-size: 15px;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .option {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 11px;
+            padding: 11px 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+        }
+
+        .option:hover {
+            background: rgba(255,255,255,0.09);
+        }
+
+        .option.correct {
+            background: rgba(16,185,129,0.12);
+            border: 1px solid rgba(16,185,129,0.45);
+            color: #34d399;
+            border-left: 3px solid #10b981;
+        }
+
+        .option.wrong {
+            background: rgba(239,68,68,0.12);
+            border: 1px solid rgba(239,68,68,0.35);
+            color: #f87171;
+            border-left: 3px solid #ef4444;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        .option-letter {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11.5px;
+            font-weight: 700;
+            background: rgba(255,255,255,0.07);
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            font-size: 13.5px;
+            line-height: 1.4;
+        }
+
+        .feedback {
+            margin-bottom: 10px;
+            padding: 9px 13px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .feedback.correct {
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.3);
+        }
+
+        .feedback.wrong {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+
+        .feedback-text {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .feedback.correct .feedback-text {
+            color: #34d399;
+        }
+
+        .feedback.wrong .feedback-text {
+            color: #f87171;
+        }
+
+        .marks-earned {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .explainer {
+            margin-top: 12px;
+            border-radius: 14px;
+            padding: 16px;
+            border: 2px solid;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .explainer.correct {
+            background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.05) 100%);
+            border-color: rgba(16,185,129,0.25);
+        }
+
+        .explainer.wrong {
+            background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.05) 100%);
+            border-color: rgba(239,68,68,0.25);
+        }
+
+        .explainer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .explainer-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .explainer-status {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .explainer-subtitle {
+            font-size: 10px;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        .quick-review {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px;
+            padding: 10px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+
+        .quick-review-title {
+            font-size: 10px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .review-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid;
+        }
+
+        .review-letter {
+            font-size: 10px;
+            font-weight: 700;
+            min-width: 16px;
+        }
+
+        .review-text {
+            font-size: 11px;
+            color: #cbd5e1;
+            flex: 1;
+        }
+
+        .explanation-content {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .explanation-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .explanation-title span:first-child {
+            font-size: 14px;
+        }
+
+        .explanation-title span:last-child {
+            font-size: 11px;
+            color: #a78bfa;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .explanation-text {
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.75;
+            white-space: pre-wrap;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 24px 0;
+        }
+
+        .spinner {
+            font-size: 24px;
+            display: inline-block;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .btn-primary {
+            width: 100%;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+        }
+
+        .results {
+            text-align: center;
+            padding-top: 32px;
+        }
+
+        .results-icon {
+            font-size: 72px;
+            margin-bottom: 6px;
+        }
+
+        .results-score {
+            margin: 0 0 2px;
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        .results-card {
+            background: rgba(255,255,255,0.045);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: left;
+        }
+
+        .results-marks {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .results-label {
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .results-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f59e0b;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.13);
+            background: rgba(255,255,255,0.05);
+            color: #e2e8f0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="container">
+        <!-- HOME SCREEN -->
+        <div id="homeScreen">
+            <div class="header">
+                <div class="header-icon">⚛️</div>
+                <h1>AP Inter Physics Quiz</h1>
+                <p class="subtitle">Andhra Pradesh Intermediate 1st Year • Board & IIT JEE Prep</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value" style="color: #6366f1;">14</div>
+                    <div class="stat-label">Chapters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">❓</div>
+                    <div class="stat-value" style="color: #8b5cf6;">700</div>
+                    <div class="stat-label">Total Qs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏅</div>
+                    <div class="stat-value" style="color: #f59e0b;">2660</div>
+                    <div class="stat-label">Total Marks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value" style="color: #10b981;" id="completedCount">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+            </div>
+
+            <div class="chapter-grid" id="chapterGrid"></div>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quizScreen" class="hidden"></div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="resultsScreen" class="hidden"></div>
+    </div>
+
+    <script>
+        // Question bank will be injected here
+        const CHAPTERS = [
+  {
+    id: 1,
+    name: "Physical World",
+    icon: "🌍",
+    color: "#6366f1",
+    questions: [
+      { q: "Which of the following is NOT a fundamental force in nature?", opts: ["Gravitational force", "Electromagnetic force", "Friction force", "Strong nuclear force"], ans: 2, marks: 3 },
+      { q: "The study of the physical world at the largest scales is called:", opts: ["Astrophysics", "Quantum physics", "Thermodynamics", "Optics"], ans: 0, marks: 3 },
+      { q: "Which scientist proposed the theory of general relativity?", opts: ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Max Planck"], ans: 1, marks: 3 },
+      { q: "What is the weakest fundamental force?", opts: ["Strong nuclear force", "Weak nuclear force", "Electromagnetic force", "Gravitational force"], ans: 3, marks: 3 },
+      { q: "Which force is responsible for holding atoms together?", opts: ["Gravitational force", "Electromagnetic force", "Strong nuclear force", "Weak nuclear force"], ans: 2, marks: 3 },
+      { q: "Physics deals with the study of:", opts: ["Living organisms only", "Chemical reactions", "Matter and energy and their interactions", "Earth's geological history"], ans: 2, marks: 3 },
+      { q: "Which branch of physics deals with very small particles?", opts: ["Classical mechanics", "Quantum mechanics", "Thermodynamics", "Astrophysics"], ans: 1, marks: 3 },
+      { q: "The electromagnetic force is responsible for:", opts: ["Holding protons in nucleus", "Binding quarks", "Chemical bonds and light", "Radioactive decay"], ans: 2, marks: 3 },
+      { q: "Which of the following is an application of physics?", opts: ["Only engineering", "Only medicine", "Both engineering and medicine", "Neither engineering nor medicine"], ans: 2, marks: 3 },
+      { q: "Newton's laws of motion belong to which branch?", opts: ["Thermodynamics", "Classical mechanics", "Electromagnetism", "Quantum physics"], ans: 1, marks: 3 },
+      { q: "The weak nuclear force is responsible for:", opts: ["Holding nucleus together", "Chemical bonding", "Radioactive beta decay", "Gravitational attraction"], ans: 2, marks: 3 },
+      { q: "Which force has infinite range?", opts: ["Strong nuclear force", "Weak nuclear force", "Gravitational force", "All forces have finite range"], ans: 2, marks: 3 },
+      { q: "Maxwell unified which two forces?", opts: ["Gravity and electromagnetism", "Electricity and magnetism", "Strong and weak nuclear", "Gravity and strong nuclear"], ans: 1, marks: 3 },
+      { q: "The scope of physics includes:", opts: ["Only macroscopic phenomena", "Only microscopic phenomena", "Both macro and microscopic phenomena", "Only astronomical phenomena"], ans: 2, marks: 3 },
+      { q: "Which scientist is known as the father of classical mechanics?", opts: ["Galileo Galilei", "Isaac Newton", "Leonhard Euler", "Joseph-Louis Lagrange"], ans: 1, marks: 3 },
+      { q: "Technology is based on:", opts: ["Physics alone", "Chemistry alone", "Biology alone", "Scientific knowledge including physics"], ans: 3, marks: 3 },
+      { q: "The range of strong nuclear force is approximately:", opts: ["10⁻¹⁵ m", "10⁻¹⁰ m", "Infinite", "10⁻³ m"], ans: 0, marks: 3 },
+      { q: "Which force acts between charged particles?", opts: ["Gravitational force", "Electromagnetic force", "Strong nuclear force", "Weak nuclear force"], ans: 1, marks: 3 },
+      { q: "Astrophysics is the study of:", opts: ["Atoms and subatomic particles", "Celestial bodies and cosmic phenomena", "Heat and temperature", "Sound and light"], ans: 1, marks: 3 },
+      { q: "The unification of all fundamental forces is called:", opts: ["Grand Unified Theory", "Special Relativity", "Quantum Mechanics", "Classical Physics"], ans: 0, marks: 3 },
+      { q: "Which of these is a contact force?", opts: ["Gravitational force", "Electromagnetic force at distance", "Normal force", "Strong nuclear force"], ans: 2, marks: 4 },
+      { q: "Faraday contributed to which branch of physics?", opts: ["Mechanics", "Electromagnetism", "Thermodynamics", "Optics"], ans: 1, marks: 4 },
+      { q: "The physical world refers to:", opts: ["Only the Earth", "Everything that exists and can be observed", "Only living things", "Only non-living things"], ans: 1, marks: 4 },
+      { q: "Which force holds electrons in an atom?", opts: ["Strong nuclear", "Weak nuclear", "Gravitational", "Electromagnetic"], ans: 3, marks: 4 },
+      { q: "Planck's contribution was to:", opts: ["Classical mechanics", "Quantum theory", "Thermodynamics", "Fluid dynamics"], ans: 1, marks: 4 },
+      { q: "The carrier particle of electromagnetic force is:", opts: ["Gluon", "W and Z bosons", "Photon", "Graviton"], ans: 2, marks: 4 },
+      { q: "Which of the following is a fundamental quantity?", opts: ["Velocity", "Force", "Length", "Energy"], ans: 2, marks: 4 },
+      { q: "Physics helps us understand:", opts: ["Only the universe", "Only daily life", "The laws governing nature", "Only laboratory experiments"], ans: 2, marks: 4 },
+      { q: "The strong nuclear force carrier is:", opts: ["Photon", "Graviton", "Gluon", "Higgs boson"], ans: 2, marks: 4 },
+      { q: "Which branch studies matter at atomic level?", opts: ["Classical mechanics", "Atomic physics", "Fluid dynamics", "Acoustics"], ans: 1, marks: 4 },
+      { q: "Coulomb's law describes which force?", opts: ["Gravitational", "Electromagnetic between charges", "Nuclear", "Frictional"], ans: 1, marks: 4 },
+      { q: "The relative strength: strong nuclear > electromagnetic > weak nuclear > ?", opts: ["Frictional", "Normal", "Gravitational", "Elastic"], ans: 2, marks: 4 },
+      { q: "Which physicist developed quantum electrodynamics?", opts: ["Einstein", "Feynman", "Newton", "Bohr"], ans: 1, marks: 4 },
+      { q: "Physics is a:", opts: ["Social science", "Natural science", "Humanities subject", "Applied art"], ans: 1, marks: 4 },
+      { q: "The gravitational force carrier (hypothetical) is called:", opts: ["Gluon", "Graviton", "Photon", "Higgs boson"], ans: 1, marks: 4 },
+      { q: "Which force is responsible for stars shining?", opts: ["Gravitational force", "Strong nuclear force (fusion)", "Electromagnetic force", "Weak nuclear force"], ans: 1, marks: 4 },
+      { q: "Bohr model describes:", opts: ["Planetary motion", "Atomic structure", "Wave behavior", "Fluid flow"], ans: 1, marks: 4 },
+      { q: "The range of weak nuclear force is approximately:", opts: ["10⁻¹⁸ m", "10⁻¹⁵ m", "Infinite", "10⁻¹⁰ m"], ans: 0, marks: 4 },
+      { q: "Which of these examples involves electromagnetic force?", opts: ["Apple falling", "Sun's gravity on Earth", "Magnet attracting iron", "Nuclear explosion"], ans: 2, marks: 4 },
+      { q: "Experimental physics involves:", opts: ["Only theories", "Conducting experiments and observations", "Only mathematics", "Only predictions"], ans: 1, marks: 4 },
+      { q: "Theoretical physics involves:", opts: ["Only experiments", "Developing mathematical models", "Only observations", "Only measurements"], ans: 1, marks: 5 },
+      { q: "Which force has the shortest range?", opts: ["Gravitational", "Electromagnetic", "Strong nuclear", "Weak nuclear"], ans: 3, marks: 5 },
+      { q: "The Higgs boson is related to:", opts: ["Giving mass to particles", "Electromagnetic force", "Nuclear force carrier", "Gravitational waves"], ans: 0, marks: 5 },
+      { q: "Optics is the study of:", opts: ["Sound waves", "Light and its behavior", "Heat transfer", "Magnetic fields"], ans: 1, marks: 5 },
+      { q: "Which of these is NOT a branch of physics?", opts: ["Thermodynamics", "Astronomy", "Organic chemistry", "Acoustics"], ans: 2, marks: 5 },
+      { q: "The electromagnetic spectrum includes:", opts: ["Only visible light", "Radio waves to gamma rays", "Only X-rays", "Only infrared"], ans: 1, marks: 5 },
+      { q: "Condensed matter physics studies:", opts: ["Gases only", "Solids and liquids", "Vacuum", "Plasma only"], ans: 1, marks: 5 },
+      { q: "Which force binds protons and neutrons in a nucleus?", opts: ["Gravitational", "Electromagnetic", "Strong nuclear", "Weak nuclear"], ans: 2, marks: 5 },
+      { q: "The physical world can be studied at:", opts: ["Only macroscopic scale", "Only microscopic scale", "Multiple scales from subatomic to cosmic", "Only human scale"], ans: 2, marks: 5 },
+      { q: "Rutherford discovered:", opts: ["Electron", "Proton and nuclear model of atom", "Neutron", "Positron"], ans: 1, marks: 5 },
+    ]
+  },
+  {
+    id: 2,
+    name: "Units and Measurements",
+    icon: "📏",
+    color: "#8b5cf6",
+    questions: [
+      { q: "How many base quantities are in the SI system?", opts: ["5", "6", "7", "8"], ans: 2, marks: 3 },
+      { q: "The SI unit of luminous intensity is:", opts: ["Candela", "Lumen", "Lux", "Watt"], ans: 0, marks: 3 },
+      { q: "1 light year is a unit of:", opts: ["Time", "Speed", "Distance", "Mass"], ans: 2, marks: 3 },
+      { q: "The prefix 'nano' means:", opts: ["10⁻⁶", "10⁻⁹", "10⁻¹²", "10⁻³"], ans: 1, marks: 3 },
+      { q: "Which is NOT a base SI unit?", opts: ["Metre", "Kilogram", "Newton", "Second"], ans: 2, marks: 3 },
+      { q: "Significant figures in 0.00345 are:", opts: ["5", "3", "2", "6"], ans: 1, marks: 3 },
+      { q: "The dimension of velocity is:", opts: ["[MLT⁻¹]", "[LT⁻¹]", "[ML⁻¹T⁻¹]", "[LT]"], ans: 1, marks: 3 },
+      { q: "1 parsec equals approximately how many light years?", opts: [" 1", "3.26", "100", "1000"], ans: 1, marks: 3 },
+      { q: "The prefix 'mega' means:", opts: ["10³", "10⁶", "10⁹", "10¹²"], ans: 1, marks: 3 },
+      { q: "Which instrument measures current?", opts: ["Voltmeter", "Ammeter", "Ohmmeter", "Galvanometer"], ans: 1, marks: 3 },
+      { q: "The SI unit of amount of substance is:", opts: ["Gram", "Mole", "Kilogram", "Atom"], ans: 1, marks: 3 },
+      { q: "Dimensional formula of force is:", opts: ["[MLT⁻²]", "[ML⁻¹T⁻²]", "[MLT⁻¹]", "[ML²T⁻²]"], ans: 0, marks: 3 },
+      { q: "The prefix 'pico' means:", opts: ["10⁻⁹", "10⁻¹²", "10⁻¹⁵", "10⁻⁶"], ans: 1, marks: 3 },
+      { q: "Least count of a ruler graduated in mm is:", opts: ["1 m", "1 cm", "1 mm", "0.1 mm"], ans: 2, marks: 3 },
+      { q: "The SI unit of temperature is:", opts: ["Celsius", "Fahrenheit", "Kelvin", "Rankine"], ans: 2, marks: 3 },
+      { q: "Which has dimensions of [ML²T⁻²]?", opts: ["Force", "Energy", "Pressure", "Velocity"], ans: 1, marks: 3 },
+      { q: "The number of significant figures in 3.0 × 10⁵ is:", opts: ["1", "2", "3", "5"], ans: 1, marks: 3 },
+      { q: "A vernier caliper can measure up to:", opts: ["0.1 mm", "0.01 mm", "0.001 mm", "1 mm"], ans: 1, marks: 3 },
+      { q: "The prefix 'tera' means:", opts: ["10⁹", "10¹⁰", "10¹²", "10¹⁵"], ans: 2, marks: 3 },
+      { q: "Dimensional formula of pressure is:", opts: ["[MLT⁻²]", "[ML⁻¹T⁻²]", "[MLT⁻¹]", "[ML²T⁻¹]"], ans: 1, marks: 3 },
+      { q: "1 AU (Astronomical Unit) is approximately:", opts: ["1.5 × 10¹¹ m", "3 × 10⁸ m", "9.46 × 10¹⁵ m", "3.086 × 10¹⁶ m"], ans: 0, marks: 4 },
+      { q: "The prefix 'femto' means:", opts: ["10⁻¹²", "10⁻¹⁵", "10⁻¹⁸", "10⁻⁹"], ans: 1, marks: 4 },
+      { q: "Systematic error is:", opts: ["Random", "Consistent in one direction", "Both random and consistent", "Only in reading"], ans: 1, marks: 4 },
+      { q: "Which is a derived unit?", opts: ["Metre", "Kilogram", "Second", "Newton"], ans: 3, marks: 4 },
+      { q: "The SI unit of time is:", opts: ["Minute", "Hour", "Second", "Millisecond"], ans: 2, marks: 4 },
+      { q: "Significant figures in 1.200 are:", opts: ["2", "3", "4", "1"], ans: 2, marks: 4 },
+      { q: "A micrometer (screw gauge) least count is:", opts: ["1 mm", "0.1 mm", "0.01 mm", "0.001 mm"], ans: 2, marks: 4 },
+      { q: "The dimension of density is:", opts: ["[ML⁻³]", "[M⁻¹L³]", "[MLT⁻²]", "[ML⁻¹T⁻²]"], ans: 0, marks: 4 },
+      { q: "How many significant figures in 0.0030?", opts: ["1", "2", "3", "4"], ans: 1, marks: 4 },
+      { q: "The prefix 'giga' means:", opts: ["10⁶", "10⁷", "10⁸", "10⁹"], ans: 3, marks: 4 },
+      { q: "Which unit is used to measure solid angles?", opts: ["Radian", "Steradian", "Degree", "Arcminute"], ans: 1, marks: 4 },
+      { q: "1 foot in SI unit is:", opts: ["0.3048 m", "0.254 m", "0.3335 m", "1 yard"], ans: 0, marks: 4 },
+      { q: "Dimensions of acceleration:", opts: ["[LT⁻¹]", "[LT⁻²]", "[ML T⁻²]", "[L²T⁻²]"], ans: 1, marks: 4 },
+      { q: "Percentage error = ?", opts: ["(Δx/x) × 10", "(Δx/x) × 100", "Δx × 100", "Δx/x"], ans: 1, marks: 4 },
+      { q: "The SI unit of mass is:", opts: ["Gram", "Pound", "Kilogram", "Ounce"], ans: 2, marks: 4 },
+      { q: "Which is NOT a CGS unit?", opts: ["Centimetre", "Gram", "Second", "Newton"], ans: 3, marks: 4 },
+      { q: "1 inch equals:", opts: ["2.54 cm", "2.45 cm", "25.4 mm", "Both A and C"], ans: 3, marks: 4 },
+      { q: "Dimensions of work done:", opts: ["[MLT⁻²]", "[ML²T⁻²]", "[ML⁻¹T⁻²]", "[LT⁻²]"], ans: 1, marks: 4 },
+      { q: "Random error can be reduced by:", opts: ["Calibration", "Taking multiple readings", "Using better instruments", "Both B and C"], ans: 3, marks: 4 },
+      { q: "The SI unit of electric current is:", opts: ["Volt", "Ampere", "Ohm", "Coulomb"], ans: 1, marks: 4 },
+      { q: "How many base dimensions in physics?", opts: ["5", "6", "7", "8"], ans: 2, marks: 5 },
+      { q: "The prefix 'centi' means:", opts: ["10⁻¹", "10⁻²", "10⁻³", "10⁻⁴"], ans: 1, marks: 5 },
+      { q: "Dimensional formula of specific gravity:", opts: ["[M⁰L⁰T⁰]", "[ML⁻³]", "[MLT⁻²]", "[M⁻¹L³]"], ans: 0, marks: 5 },
+      { q: "Which instrument measures very small lengths?", opts: ["Ruler", "Tape measure", "Microscope", "Electron microscope"], ans: 3, marks: 5 },
+      { q: "The SI unit of length is:", opts: ["Centimetre", "Inch", "Metre", "Foot"], ans: 2, marks: 5 },
+      { q: "Significant figures in 100 (without decimal):", opts: ["1", "2", "3", "Ambiguous"], ans: 3, marks: 5 },
+      { q: "Fermi is a unit equal to:", opts: ["10⁻¹⁰ m", "10⁻¹⁵ m", "10⁻¹² m", "10⁻⁹ m"], ans: 1, marks: 5 },
+      { q: "The prefix 'micro' means:", opts: ["10⁻³", "10⁻⁶", "10⁻⁹", "10⁻¹²"], ans: 1, marks: 5 },
+      { q: "Dimensions of momentum:", opts: ["[MLT⁻¹]", "[MLT⁻²]", "[ML²T⁻¹]", "[LT⁻¹]"], ans: 0, marks: 5 },
+      { q: "The SI unit of solid angle is:", opts: ["Radian", "Degree", "Steradian", "Millisteradian"], ans: 2, marks: 5 },
+    ]
+  },
+  {
+    id: 3,
+    name: "Motion in a Straight Line",
+    icon: "➡️",
+    color: "#a855f7",
+    questions: [
+      { q: "Distance is always:", opts: ["Positive or zero", "Negative", "Zero", "Can be negative"], ans: 0, marks: 3 },
+      { q: "What is the SI unit of acceleration?", opts: ["m/s", "m/s²", "km/h", "m·s"], ans: 1, marks: 3 },
+      { q: "If displacement is zero, the object:", opts: ["Did not move", "Returned to starting point", "Moved in a circle", "Both B and C"], ans: 3, marks: 3 },
+      { q: "Average velocity = ?", opts: ["Total distance / Total time", "Total displacement / Total time", "Final velocity / Time", "Initial velocity / Time"], ans: 1, marks: 3 },
+      { q: "Uniform motion means:", opts: ["Constant acceleration", "Constant velocity", "Increasing speed", "Zero velocity"], ans: 1, marks: 3 },
+      { q: "The equation v = u + at is valid for:", opts: ["Non-uniform acceleration", "Uniform acceleration", "Only when u = 0", "All types of motion"], ans: 1, marks: 3 },
+      { q: "In a v-t graph, the slope gives:", opts: ["Displacement", "Distance", "Acceleration", "Velocity"], ans: 2, marks: 3 },
+      { q: "In an s-t graph, the slope gives:", opts: ["Acceleration", "Force", "Velocity", "Speed"], ans: 2, marks: 3 },
+      { q: "Free fall acceleration on Earth ≈", opts: ["9.8 m/s²", "10 m/s²", "9.8 m/s", "Both A and B approximately"], ans: 3, marks: 3 },
+      { q: "Instantaneous velocity is the limit of average velocity as:", opts: ["t → ∞", "Δt → 0", "Δx → 0", "v → 0"], ans: 1, marks: 3 },
+      { q: "For uniformly accelerated motion, s = ut + ½at². Here 's' is:", opts: ["Speed", "Displacement", "Distance", "Velocity"], ans: 1, marks: 3 },
+      { q: "If a body starts from rest, u = ?", opts: ["1 m/s", "0", "g", "Undefined"], ans: 1, marks: 3 },
+      { q: "The area under a v-t graph gives:", opts: ["Acceleration", "Force", "Displacement", "Speed"], ans: 2, marks: 3 },
+      { q: "Which equation does NOT apply to uniform acceleration?", opts: ["v = u + at", "s = ut + ½at²", "v² = u² + 2as", "s = ½(u+v)t² "], ans: 3, marks: 3 },
+      { q: "A ball thrown upward decelerates at:", opts: ["g", "2g", "g/2", "0"], ans: 0, marks: 3 },
+      { q: "Displacement can be:", opts: ["Only positive", "Only negative", "Positive, negative, or zero", "Only zero"], ans: 2, marks: 3 },
+      { q: "Speed is the magnitude of:", opts: ["Acceleration", "Force", "Velocity", "Displacement"], ans: 2, marks: 3 },
+      { q: "For two objects with same speed, they have:", opts: ["Same velocity always", "Same displacement", "Same distance in same time", "Same acceleration"], ans: 2, marks: 3 },
+      { q: "In free fall (ignoring air resistance), what remains constant?", opts: ["Velocity", "Distance", "Acceleration", "Speed"], ans: 2, marks: 3 },
+      { q: "If acceleration is negative and velocity is positive, the body is:", opts: ["Speeding up", "Slowing down", "Stationary", "Moving backward"], ans: 1, marks: 3 },
+      { q: "The time taken for a ball to reach max height equals:", opts: ["Time to fall back", "Half the total time", "Both A and B", "None of these"], ans: 2, marks: 4 },
+      { q: "Terminal velocity is reached when:", opts: ["Gravity = Drag force", "Velocity = 0", "Acceleration = g", "Mass = 0"], ans: 0, marks: 4 },
+      { q: "For uniform motion, acceleration is:", opts: ["Constant positive", "Constant negative", "Zero", "Variable"], ans: 2, marks: 4 },
+      { q: "Distance between two objects approaching each other:", opts: ["Increases", "Decreases", "Remains constant", "Cannot be determined"], ans: 1, marks: 4 },
+      { q: "The slope of s-t graph for uniform motion is:", opts: ["Zero", "Constant (= velocity)", "Increasing", "Decreasing"], ans: 1, marks: 4 },
+      { q: "If v² = u² + 2as and v = 0, then s = ?", opts: ["u²/2a", "-u²/2a", "u/2a", "2a/u²"], ans: 1, marks: 4 },
+      { q: "Relative velocity of A w.r.t. B = ?", opts: ["vA + vB", "vA - vB", "vA × vB", "vA / vB"], ans: 1, marks: 4 },
+      { q: "For motion with constant acceleration, the s-t graph is:", opts: ["A straight line", "A parabola", "A circle", "A hyperbola"], ans: 1, marks: 4 },
+      { q: "If two bodies start from same point with velocities u and 2u, after time t their distance is:", opts: ["ut", "2ut", "3ut", "ut²"], ans: 0, marks: 4 },
+      { q: "Acceleration is defined as:", opts: ["Rate of change of displacement", "Rate of change of velocity", "Rate of change of speed", "Rate of change of distance"], ans: 1, marks: 4 },
+      { q: "Unit of velocity in CGS system:", opts: ["m/s", "cm/s", "km/h", "ft/s"], ans: 1, marks: 4 },
+      { q: "A car decelerates uniformly and stops. Its v-t graph is:", opts: ["Horizontal line", "Line with positive slope", "Line with negative slope", "Curved line"], ans: 2, marks: 4 },
+      { q: "If distance = speed × time, then speed = ?", opts: ["distance × time", "distance / time", "time / distance", "distance + time"], ans: 1, marks: 4 },
+      { q: "The maximum height reached by a projectile (vertical): h = ?", opts: ["u²/2g", "u/2g", "2u²/g", "u²/g"], ans: 0, marks: 4 },
+      { q: "For body at rest, initial velocity u = ?", opts: ["g", "1", "0", "Undefined"], ans: 2, marks: 4 },
+      { q: "Average speed can be greater than average velocity when:", opts: ["Motion is in one direction", "Object returns back", "Object moves in a circle", "Both B and C"], ans: 3, marks: 4 },
+      { q: "If v-t graph is a horizontal line, the motion is:", opts: ["Uniformly accelerated", "Uniform (constant velocity)", "Decelerated", "At rest"], ans: 1, marks: 4 },
+      { q: "Time of flight for a ball thrown up with velocity u:", opts: ["u/g", "2u/g", "u/2g", "u²/2g"], ans: 1, marks: 4 },
+      { q: "The equation s = ½at² applies when:", opts: ["u ≠ 0", "u = 0", "a = 0", "All cases"], ans: 1, marks: 4 },
+      { q: "Negative displacement means:", opts: ["Object moved in negative direction", "Object stopped", "Speed is negative", "No motion"], ans: 0, marks: 4 },
+      { q: "In uniformly accelerated motion, the v-t graph is:", opts: ["Parabola", "Circle", "Straight line", "Exponential curve"], ans: 2, marks: 5 },
+      { q: "Two objects start from same point: one at 2 m/s, other at 4 m/s. Distance after 3s:", opts: ["2m", "4m", "6m", "18m"], ans: 2, marks: 5 },
+      { q: "A body moves 10m in 2s and 20m in next 2s. Is it uniformly accelerated?", opts: ["Yes", "No", "Cannot determine", "Only if starting from rest"], ans: 0, marks: 5 },
+      { q: "If s₁ is distance in first second and s₂ in second second, then s₂ - s₁ = ?", opts: ["a", "u", "2a", "a/2"], ans: 0, marks: 5 },
+      { q: "The v-t graph area gives displacement only if:", opts: ["Velocity is always positive", "Considering sign of area", "Motion is uniform", "All conditions are met"], ans: 1, marks: 5 },
+      { q: "A body with v = 3t² has acceleration at t=2s:", opts: ["6 m/s²", "12 m/s²", "18 m/s²", "3 m/s²"], ans: 1, marks: 5 },
+      { q: "For free fall, distance in nth second: sₙ = ?", opts: ["½g(2n-1)", "g(2n-1)/2", "g(n-1)/2", "Both A and B"], ans: 3, marks: 5 },
+      { q: "Displacement is a ___ quantity.", opts: ["Scalar", "Vector", "Neither", "Both"], ans: 1, marks: 5 },
+      { q: "If two trains approach each other at 60 km/h each, relative speed is:", opts: ["60 km/h", "120 km/h", "30 km/h", "0 km/h"], ans: 1, marks: 5 },
+      { q: "A body starts from rest and moves with constant acceleration a. The distance covered in the nth second is:", opts: ["½a(2n-1)", "a(2n-1)", "½a(n-1)", "a(n)"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 4,
+    name: "Motion in a Plane",
+    icon: "✈️",
+    color: "#d946ef",
+    questions: [
+      { q: "Projectile motion is a combination of:", opts: ["Two vertical motions", "Horizontal uniform + vertical accelerated motion", "Two horizontal motions", "One uniform motion only"], ans: 1, marks: 3 },
+      { q: "The range of a projectile R = ?", opts: ["u²sin2θ/g", "u²sinθ/g", "u²sin²θ/2g", "u sinθ/g"], ans: 0, marks: 3 },
+      { q: "Maximum range occurs at angle:", opts: ["30°", "45°", "60°", "90°"], ans: 1, marks: 3 },
+      { q: "In projectile motion, horizontal velocity is:", opts: ["Constant", "Increasing", "Decreasing", "Variable"], ans: 0, marks: 3 },
+      { q: "The horizontal acceleration in projectile motion is:", opts: ["g", "0", "g/2", "2g"], ans: 1, marks: 3 },
+      { q: "Maximum height H = ?", opts: ["u²sin²θ/2g", "u²sinθ/2g", "u²cos²θ/2g", "u²/2g"], ans: 0, marks: 3 },
+      { q: "Time of flight T = ?", opts: ["u sinθ/g", "2u sinθ/g", "u cosθ/g", "2u cosθ/g"], ans: 1, marks: 3 },
+      { q: "A vector has magnitude but which direction?", opts: ["No direction", "A specific direction", "Infinite directions", "Only vertical direction"], ans: 1, marks: 3 },
+      { q: "The magnitude of vector A⃗ = (3,4) is:", opts: ["7", "5", "12", "3.5"], ans: 1, marks: 3 },
+      { q: "Dot product of perpendicular vectors is:", opts: ["Maximum", "Zero", "Negative", "Equal to product of magnitudes"], ans: 1, marks: 3 },
+      { q: "Cross product of parallel vectors is:", opts: ["Maximum", "Zero", "One", "Equal to product of magnitudes"], ans: 1, marks: 3 },
+      { q: "The angle for equal range at complementary angles: θ and (90°-θ) give:", opts: ["Different ranges", "Same range", "Zero range", "Cannot be determined"], ans: 1, marks: 3 },
+      { q: "In circular motion, centripetal acceleration points:", opts: ["Along velocity", "Opposite to velocity", "Toward center", "Away from center"], ans: 2, marks: 3 },
+      { q: "Unit vector has magnitude:", opts: ["0", "1", "Any value", "Undefined"], ans: 1, marks: 3 },
+      { q: "A⃗ · B⃗ = |A||B|cosθ. If θ = 0°, then A⃗·B⃗ = ?", opts: ["|A||B|", "0", "-|A||B|", "|A|+|B|"], ans: 0, marks: 3 },
+      { q: "The trajectory of projectile is:", opts: ["Straight line", "Circle", "Parabola", "Ellipse"], ans: 2, marks: 3 },
+      { q: "Relative velocity of A w.r.t. B:", opts: ["vA + vB", "vA - vB", "vB - vA", "|vA - vB|"], ans: 1, marks: 3 },
+      { q: "In uniform circular motion, speed is:", opts: ["Changing", "Constant", "Zero", "Increasing"], ans: 1, marks: 3 },
+      { q: "Angular velocity ω = ?", opts: ["v/r", "v×r", "r/v", "v+r"], ans: 0, marks: 3 },
+      { q: "The period of circular motion T = ?", opts: ["2πr/v", "πr/v", "2πv/r", "v/2πr"], ans: 0, marks: 3 },
+      { q: "If a projectile is launched horizontally from height h, time to fall = ?", opts: ["√(2h/g)", "√(h/g)", "2√(h/g)", "h/g"], ans: 0, marks: 4 },
+      { q: "The centripetal force = ?", opts: ["mv²/r", "mv/r", "mr/v", "mvr"], ans: 0, marks: 4 },
+      { q: "Vector addition follows:", opts: ["Arithmetic rules only", "Parallelogram law", "Only triangle law", "Both B and C"], ans: 3, marks: 4 },
+      { q: "Scalar quantity has:", opts: ["Magnitude and direction", "Only magnitude", "Only direction", "Neither"], ans: 1, marks: 4 },
+      { q: "For projectile at maximum height, velocity is:", opts: ["Zero", "u", "u cosθ", "u sinθ"], ans: 2, marks: 4 },
+      { q: "Centripetal acceleration = ?", opts: ["ω²r", "v²/r", "Both A and B", "ωr²"], ans: 2, marks: 4 },
+      { q: "A⃗ × B⃗ = |A||B|sinθ n̂. If θ = 90°, magnitude = ?", opts: ["|A||B|", "0", "-|A||B|", "1"], ans: 0, marks: 4 },
+      { q: "Two vectors are equal if they have:", opts: ["Same magnitude only", "Same direction only", "Same magnitude and direction", "Same starting point"], ans: 2, marks: 4 },
+      { q: "The vertical component of projectile velocity at time t:", opts: ["u cosθ", "u sinθ - gt", "u cosθ - gt", "gt"], ans: 1, marks: 4 },
+      { q: "In banked road (no friction), the banking angle: tanθ = ?", opts: ["v²/rg", "rg/v²", "v/rg", "v²/r"], ans: 0, marks: 4 },
+      { q: "The null vector has magnitude:", opts: ["1", "0", "Infinity", "Undefined"], ans: 1, marks: 4 },
+      { q: "Time to reach max height = ?", opts: ["u sinθ/g", "2u sinθ/g", "u cosθ/g", "u/g"], ans: 0, marks: 4 },
+      { q: "Component of velocity perpendicular to trajectory at max height:", opts: ["u sinθ", "u cosθ", "0", "u"], ans: 2, marks: 4 },
+      { q: "If two projectiles are launched at 30° and 60° with same speed, their ranges are:", opts: ["Different", "Same", "First is greater", "Cannot compare"], ans: 1, marks: 4 },
+      { q: "In uniform circular motion, which is constant?", opts: ["Velocity", "Speed", "Acceleration", "Both B and C"], ans: 1, marks: 4 },
+      { q: "Frequency f = ?", opts: ["1/T", "T", "2π/T", "T/2π"], ans: 0, marks: 4 },
+      { q: "A swimmer crosses a river of width d at velocity v perpendicular to current. Time = ?", opts: ["d/v", "v/d", "d×v", "d/(v+u)"], ans: 0, marks: 4 },
+      { q: "The velocity at any time in projectile motion: v = ?", opts: ["√((ucosθ)² + (usinθ-gt)²)", "ucosθ + usinθ - gt", "u - gt", "ucosθ only"], ans: 0, marks: 4 },
+      { q: "For a projectile, at what height is speed minimum?", opts: ["Ground level", "Maximum height", "Half maximum height", "Quarter maximum height"], ans: 1, marks: 4 },
+      { q: "Angular displacement θ = ?", opts: ["ωt", "ωt²", "ω/t", "ω+t"], ans: 0, marks: 4 },
+      { q: "The cross product A⃗ × B⃗ is:", opts: ["Scalar", "Vector perpendicular to both A and B", "Parallel to A", "Parallel to B"], ans: 1, marks: 5 },
+      { q: "In circular motion, the direction of velocity is:", opts: ["Radial", "Tangential", "Vertical", "Horizontal always"], ans: 1, marks: 5 },
+      { q: "If range R = u²sin2θ/g, maximum R when sin2θ = ?", opts: ["0", "0.5", "1", "-1"], ans: 2, marks: 5 },
+      { q: "Two vectors with magnitudes 3 and 4 at 90°. Resultant magnitude:", opts: ["7", "5", "1", "12"], ans: 1, marks: 5 },
+      { q: "The resultant of two equal vectors at angle θ: R = ?", opts: ["2A cosθ", "2A cos(θ/2)", "A cosθ", "A cos(θ/2)"], ans: 1, marks: 5 },
+      { q: "Relative acceleration of two objects with constant acceleration:", opts: ["Always zero", "aA - aB", "aA + aB", "Cannot be determined"], ans: 1, marks: 5 },
+      { q: "In projectile motion, the acceleration is always:", opts: ["Along velocity", "Perpendicular to velocity", "Vertically downward (g)", "Horizontal"], ans: 2, marks: 5 },
+      { q: "For a projectile, max range with minimum speed u₀:", opts: ["u₀²/g at 45°", "u₀²/2g at 30°", "2u₀²/g at 60°", "u₀²/g at 90°"], ans: 0, marks: 5 },
+      { q: "The position vector r⃗ = xi + yj. Its magnitude is:", opts: ["x + y", "√(x² + y²)", "x² + y²", "|x - y|"], ans: 1, marks: 5 },
+      { q: "In 2D motion, acceleration can change:", opts: ["Only speed", "Only direction", "Both speed and direction", "Neither"], ans: 2, marks: 5 },
+    ]
+  },
+  {
+    id: 5,
+    name: "Laws of Motion",
+    icon: "⚡",
+    color: "#ec4899",
+    questions: [
+      { q: "Newton's first law states that a body at rest:", opts: ["Always moves", "Stays at rest unless acted upon by a net external force", "Decelerates automatically", "Has zero mass"], ans: 1, marks: 3 },
+      { q: "F = ma is Newton's which law?", opts: ["First", "Second", "Third", "Zeroth"], ans: 1, marks: 3 },
+      { q: "Newton's third law: Action and reaction are:", opts: ["Equal in magnitude, same direction", "Equal in magnitude, opposite direction", "Different in magnitude", "On the same body"], ans: 1, marks: 3 },
+      { q: "The unit of force in SI system is:", opts: ["Dyne", "Newton", "Pound", "Kilogram-force"], ans: 1, marks: 3 },
+      { q: "1 Newton equals how many dynes?", opts: ["100", "1000", "10000", "100000"], ans: 3, marks: 3 },
+      { q: "Inertia is the property of:", opts: ["Force", "Acceleration", "Matter (resistance to change in motion)", "Energy"], ans: 2, marks: 3 },
+      { q: "If net force on a body is zero, its acceleration is:", opts: ["g", "Maximum", "Zero", "Undefined"], ans: 2, marks: 3 },
+      { q: "Friction is a type of force that:", opts: ["Always accelerates", "Opposes relative motion", "Acts only on smooth surfaces", "Is always zero"], ans: 1, marks: 3 },
+      { q: "The coefficient of static friction is:", opts: ["Always greater than kinetic friction", "Always less than kinetic friction", "Equal to kinetic friction", "Always zero"], ans: 0, marks: 3 },
+      { q: "Normal force on an object on an incline = ?", opts: ["mg", "mg sinθ", "mg cosθ", "mg tanθ"], ans: 2, marks: 3 },
+      { q: "For an object moving at constant velocity, the net force is:", opts: ["mg", "ma", "Zero", "Non-zero"], ans: 2, marks: 3 },
+      { q: "Pseudo force arises in which frame?", opts: ["Inertial frame", "Non-inertial frame", "All frames", "No frames"], ans: 1, marks: 3 },
+      { q: "The force required to keep a block moving at constant velocity on a rough surface:", opts: ["Greater than friction", "Equal to friction", "Less than friction", "Zero"], ans: 1, marks: 3 },
+      { q: "Weight of an object is:", opts: ["Mass", "mg", "Volume × density", "Both A and C"], ans: 1, marks: 3 },
+      { q: "An object in an elevator accelerating upward feels:", opts: ["Lighter", "Heavier", "Same weight", "Weightless"], ans: 1, marks: 3 },
+      { q: "Free fall means:", opts: ["Moving horizontally", "Only gravity acts", "No forces act", "Constant velocity"], ans: 1, marks: 3 },
+      { q: "Impulse = ?", opts: ["F × t (Force × time)", "F × d", "m × v", "m × a"], ans: 0, marks: 3 },
+      { q: "Impulse equals change in:", opts: ["Force", "Energy", "Momentum", "Acceleration"], ans: 2, marks: 3 },
+      { q: "The component of gravity along an incline = ?", opts: ["mg", "mg sinθ", "mg cosθ", "mg tanθ"], ans: 1, marks: 3 },
+      { q: "If a body is in equilibrium, the resultant of all forces is:", opts: ["Maximum", "Minimum", "Zero", "Non-zero"], ans: 2, marks: 3 },
+      { q: "Kinetic friction force = ?", opts: ["μₖN", "μₛN", "μₖmg always", "Zero"], ans: 0, marks: 4 },
+      { q: "An Atwood machine has masses m₁ > m₂. Acceleration = ?", opts: ["(m₁-m₂)g/(m₁+m₂)", "(m₁+m₂)g/(m₁-m₂)", "g", "(m₁-m₂)g"], ans: 0, marks: 4 },
+      { q: "The maximum static friction = ?", opts: ["μₛN", "μₖN", "mg", "Zero"], ans: 0, marks: 4 },
+      { q: "Tension in a string connecting two blocks on a smooth surface:", opts: ["Equals force applied", "Less than force applied", "Greater than force applied", "Zero"], ans: 1, marks: 4 },
+      { q: "Newton's second law in vector form:", opts: ["F = ma", "F⃗ = ma⃗", "|F| = m|a|", "F = m/a"], ans: 1, marks: 4 },
+      { q: "An object on a frictionless incline accelerates at:", opts: ["g", "g sinθ", "g cosθ", "g tanθ"], ans: 1, marks: 4 },
+      { q: "For a body moving in a circle, the net force is:", opts: ["Along velocity", "Opposite to velocity", "Toward center (centripetal)", "Away from center"], ans: 2, marks: 4 },
+      { q: "Apparent weight in a freely falling elevator:", opts: ["mg", "2mg", "Zero (weightless)", "mg/2"], ans: 2, marks: 4 },
+      { q: "The force between two blocks in contact (mass m₁ and m₂) pushed by F:", opts: ["F", "Fm₂/(m₁+m₂)", "Fm₁/(m₁+m₂)", "0"], ans: 1, marks: 4 },
+      { q: "Newton's laws are valid in which frame?", opts: ["Non-inertial frame", "Inertial frame", "All frames", "No frames"], ans: 1, marks: 4 },
+      { q: "If static friction equals the applied force (up to max), the body is:", opts: ["Moving", "Stationary", "Accelerating", "Decelerating"], ans: 1, marks: 4 },
+      { q: "The SI unit of impulse is:", opts: ["N·m", "N·s", "kg·m/s²", "Both B and C (same dimension)"], ans: 3, marks: 4 },
+      { q: "Lami's theorem applies to a body in equilibrium with:", opts: ["Two forces", "Three concurrent coplanar forces", "Four forces", "Parallel forces only"], ans: 1, marks: 4 },
+      { q: "A block on a rough surface: applied force < max static friction. The block:", opts: ["Moves slowly", "Does not move", "Accelerates", "Decelerates"], ans: 1, marks: 4 },
+      { q: "Which is an example of Newton's third law?", opts: ["A book on a table", "A rocket launching", "Both A and B", "Neither"], ans: 2, marks: 4 },
+      { q: "The net force on Earth due to the Sun:", opts: ["Equals Earth's weight on Sun", "Is zero", "Equals gravitational force", "Both A and C"], ans: 2, marks: 4 },
+      { q: "Mass is a measure of:", opts: ["Weight", "Inertia", "Volume", "Density"], ans: 1, marks: 4 },
+      { q: "If friction coefficient μ on incline, block slides when:", opts: ["tanθ > μ", "tanθ < μ", "tanθ = μ", "sinθ > μ"], ans: 0, marks: 4 },
+      { q: "A spring with constant k stretched by x has force:", opts: ["kx", "kx²", "k/x", "2kx"], ans: 0, marks: 4 },
+      { q: "Which of these does NOT depend on mass?", opts: ["Weight", "Inertia", "Gravitational acceleration g", "Momentum"], ans: 2, marks: 4 },
+      { q: "For motion on a rough horizontal surface: friction = ?", opts: ["mg", "μmg", "μmg cosθ", "mg sinθ"], ans: 1, marks: 5 },
+      { q: "The tension in a string supporting a stationary mass m:", opts: ["0", "mg/2", "mg", "2mg"], ans: 2, marks: 5 },
+      { q: "An elevator cable breaks. Objects inside experience:", opts: ["Normal force", "Weightlessness", "Double weight", "Half weight"], ans: 1, marks: 5 },
+      { q: "Two blocks of mass m each connected by string, one pulled by F on smooth surface. Tension = ?", opts: ["F", "F/2", "2F", "0"], ans: 1, marks: 5 },
+      { q: "Newton's first law is also called:", opts: ["Law of force", "Law of inertia", "Law of action-reaction", "Law of motion"], ans: 1, marks: 5 },
+      { q: "The angle of repose equals:", opts: ["sin⁻¹(μ)", "cos⁻¹(μ)", "tan⁻¹(μ)", "μ"], ans: 2, marks: 5 },
+      { q: "A body moving on a rough surface eventually stops because:", opts: ["Gravity", "Normal force", "Friction", "Air resistance"], ans: 2, marks: 5 },
+      { q: "Net force = 0 implies:", opts: ["Body is at rest", "Body moves at constant velocity", "Either rest or constant velocity", "Body has zero mass"], ans: 2, marks: 5 },
+      { q: "The unit dyne is CGS unit of:", opts: ["Energy", "Force", "Power", "Momentum"], ans: 1, marks: 5 },
+      { q: "A block of mass m is on a rough incline of angle θ. The minimum force along the incline to push it up is:", opts: ["mg sinθ + μmg cosθ", "mg sinθ - μmg cosθ", "mg sinθ", "μmg cosθ"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 6,
+    name: "Work, Energy and Power",
+    icon: "⚙️",
+    color: "#f43f5e",
+    questions: [
+      { q: "Work done W = ?", opts: ["F × d", "F × d × cosθ", "F × d × sinθ", "F / d"], ans: 1, marks: 3 },
+      { q: "The SI unit of work is:", opts: ["Watt", "Joule", "Newton", "Pascal"], ans: 1, marks: 3 },
+      { q: "1 Joule = ?", opts: ["1 N·m", "1 N·s", "1 kg·m/s", "1 W·s"], ans: 0, marks: 3 },
+      { q: "Kinetic energy KE = ?", opts: ["mv", "½mv²", "mv²", "½mv"], ans: 1, marks: 3 },
+      { q: "Work-Energy Theorem states:", opts: ["W = ΔKE", "W = ΔPE", "W = ΔKE + ΔPE", "W = 0 always"], ans: 0, marks: 3 },
+      { q: "Power P = ?", opts: ["W/t", "F×d", "W×t", "F/t"], ans: 0, marks: 3 },
+      { q: "The SI unit of power is:", opts: ["Joule", "Newton", "Watt", "Pascal"], ans: 2, marks: 3 },
+      { q: "Instantaneous power P = ?", opts: ["F·v", "F/v", "F×d", "W/d"], ans: 0, marks: 3 },
+      { q: "If a force is perpendicular to displacement, work done = ?", opts: ["Fd", "Maximum", "Zero", "-Fd"], ans: 2, marks: 3 },
+      { q: "Gravitational PE at height h: PE = ?", opts: ["mgh", "½mgh", "mg/h", "2mgh"], ans: 0, marks: 3 },
+      { q: "Spring PE = ?", opts: ["kx", "½kx²", "kx²", "2kx²"], ans: 1, marks: 3 },
+      { q: "Conservation of energy states:", opts: ["Energy is created", "Energy is destroyed", "Total energy is constant (conserved)", "KE is always constant"], ans: 2, marks: 3 },
+      { q: "The work done by gravity is path:", opts: ["Dependent", "Independent (conservative)", "Always zero", "Always negative"], ans: 1, marks: 3 },
+      { q: "Friction is a:", opts: ["Conservative force", "Non-conservative force", "Central force", "Neither"], ans: 1, marks: 3 },
+      { q: "1 eV = ?", opts: ["1.6 × 10⁻¹⁹ J", "1.6 × 10⁻¹⁰ J", "1.6 × 10⁻²² J", "1.6 × 10⁻¹⁶ J"], ans: 0, marks: 3 },
+      { q: "If velocity doubles, KE becomes:", opts: ["Double", "Triple", "Four times", "Half"], ans: 2, marks: 3 },
+      { q: "Work done by friction is always:", opts: ["Positive", "Negative", "Zero", "Can be positive or negative"], ans: 1, marks: 3 },
+      { q: "Efficiency η = ?", opts: ["Output/Input", "Input/Output", "(Output/Input) × 100%", "Both A and C"], ans: 2, marks: 3 },
+      { q: "1 HP (horsepower) = ?", opts: ["746 W", "1000 W", "500 W", "746 J"], ans: 0, marks: 3 },
+      { q: "For a conservative force, work in a closed loop is:", opts: ["Maximum", "Minimum", "Zero", "Non-zero"], ans: 2, marks: 3 },
+      { q: "The work done by normal force on an object on a horizontal surface is:", opts: ["mg×d", "Zero (perpendicular to motion)", "mg×d×cosθ", "Negative"], ans: 1, marks: 4 },
+      { q: "KE is always:", opts: ["Negative", "Zero", "Positive or zero", "Can be negative"], ans: 2, marks: 4 },
+      { q: "If an object moves against gravity by height h, work by gravity = ?", opts: ["mgh", "-mgh", "0", "mgh/2"], ans: 1, marks: 4 },
+      { q: "Average power = ?", opts: ["Total work / Total time", "Force × velocity", "Work × time", "Force / time"], ans: 0, marks: 4 },
+      { q: "The change in PE = ?", opts: ["ΔPE = -W (work by conservative force)", "ΔPE = W", "ΔPE = 0 always", "ΔPE = KE"], ans: 0, marks: 4 },
+      { q: "A spring compressed by x stores energy:", opts: ["½kx²", "kx²", "½kx", "kx"], ans: 0, marks: 4 },
+      { q: "When velocity is zero, KE = ?", opts: ["Maximum", "Zero", "Negative", "Undefined"], ans: 1, marks: 4 },
+      { q: "Work done by tension in a rope pulling at angle θ to horizontal:", opts: ["Td", "Td cosθ", "Td sinθ", "0"], ans: 1, marks: 4 },
+      { q: "The power of a car moving at speed v with driving force F:", opts: ["Fv", "F/v", "F+v", "F-v"], ans: 0, marks: 4 },
+      { q: "Energy stored in a capacitor: E = ?", opts: ["½CV²", "CV²", "½CV", "CV"], ans: 0, marks: 4 },
+      { q: "If mass doubles and velocity halves, KE becomes:", opts: ["Same", "Double", "Half", "Quarter"], ans: 2, marks: 4 },
+      { q: "Which force does zero work on a satellite in circular orbit?", opts: ["Gravity", "Centripetal force (gravity here)", "Friction", "Normal force"], ans: 1, marks: 4 },
+      { q: "The work-energy theorem: Wnet = ?", opts: ["ΔKE", "ΔPE", "ΔE (total)", "Fd"], ans: 0, marks: 4 },
+      { q: "Watt is defined as:", opts: ["1 J/s", "1 N·m", "1 kg·m²/s", "1 J·s"], ans: 0, marks: 4 },
+      { q: "When a ball is thrown upward, at max height:", opts: ["KE = 0, PE = max", "KE = max, PE = 0", "Both are equal", "Both are zero"], ans: 0, marks: 4 },
+      { q: "Binding energy is the energy required to:", opts: ["Accelerate a particle", "Disintegrate a nucleus", "Heat a substance", "Lift an object"], ans: 1, marks: 4 },
+      { q: "If work done = 0 and initial KE = 0, then final KE = ?", opts: ["0", "Positive", "Negative", "Cannot determine"], ans: 0, marks: 4 },
+      { q: "The work done by air resistance is:", opts: ["Always positive", "Always negative", "Zero", "Path independent"], ans: 1, marks: 4 },
+      { q: "Mechanical energy = ?", opts: ["KE only", "PE only", "KE + PE", "Work done"], ans: 2, marks: 4 },
+      { q: "For an elastic collision, which is conserved?", opts: ["KE only", "Momentum only", "Both KE and momentum", "Neither"], ans: 2, marks: 4 },
+      { q: "The rate of doing work is called:", opts: ["Force", "Energy", "Power", "Momentum"], ans: 2, marks: 5 },
+      { q: "1 kWh = ? Joules", opts: ["3.6 × 10⁶ J", "3.6 × 10³ J", "3.6 × 10⁹ J", "1000 J"], ans: 0, marks: 5 },
+      { q: "If a car moves at constant velocity, work by engine = ?", opts: ["Zero", "Work done against friction", "mgh", "½mv²"], ans: 1, marks: 5 },
+      { q: "Negative work means:", opts: ["Force and displacement are in same direction", "Force and displacement are in opposite direction", "No work is done", "Object gains energy"], ans: 1, marks: 5 },
+      { q: "The minimum KE of a particle with momentum p:", opts: ["p²/2m", "p/2m", "2mp²", "p²m"], ans: 0, marks: 5 },
+      { q: "Which energy is conserved in a perfectly inelastic collision?", opts: ["Kinetic energy", "Potential energy", "Momentum (not energy)", "Total mechanical energy"], ans: 2, marks: 5 },
+      { q: "Power delivered by a force F at angle θ to velocity v:", opts: ["Fv cosθ", "Fv sinθ", "Fv", "Fv tanθ"], ans: 0, marks: 5 },
+      { q: "If a spring is stretched to twice its natural extension, PE becomes:", opts: ["Double", "Triple", "Four times", "Half"], ans: 2, marks: 5 },
+      { q: "Work done by gravity in moving object from A to B depends on:", opts: ["Path taken", "Only height difference", "Speed of object", "Time taken"], ans: 1, marks: 5 },
+      { q: "A force F = 2x + 3 (in Newtons, x in meters) acts on a body. Work done from x=1 to x=3 is:", opts: ["16 J", "12 J", "14 J", "10 J"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 7,
+    name: "System of Particles & Rotational Motion",
+    icon: "🔄",
+    color: "#f97316",
+    questions: [
+      { q: "The center of mass of a uniform rod is at:", opts: ["One end", "Middle (L/2)", "One-third from end", "Two-thirds from end"], ans: 1, marks: 3 },
+      { q: "Moment of inertia of a solid sphere about diameter:", opts: ["2/5 mr²", "2/3 mr²", "1/2 mr²", "mr²"], ans: 0, marks: 3 },
+      { q: "Moment of inertia of a thin ring about its axis:", opts: ["mr²", "½mr²", "2mr²", "⅔mr²"], ans: 0, marks: 3 },
+      { q: "Moment of inertia of a solid cylinder about its axis:", opts: ["mr²", "½mr²", "⅓mr²", "¾mr²"], ans: 1, marks: 3 },
+      { q: "The parallel axis theorem: I = ?", opts: ["Icm + md²", "Icm - md²", "Icm × md²", "Icm / md²"], ans: 0, marks: 3 },
+      { q: "Angular momentum L = ?", opts: ["Iω", "Iα", "Iω²", "I/ω"], ans: 0, marks: 3 },
+      { q: "Torque τ = ?", opts: ["r × F", "r · F", "F/r", "rF sinθ (both A and D)"], ans: 3, marks: 3 },
+      { q: "The rotational analog of Newton's second law: τ = ?", opts: ["Iα", "Iω", "Iω²", "I/α"], ans: 0, marks: 3 },
+      { q: "For a system of particles, the total momentum equals:", opts: ["Sum of individual momenta", "M × vcm", "Both A and B", "Neither"], ans: 2, marks: 3 },
+      { q: "Rotational KE = ?", opts: ["½Iω²", "½Iω", "Iω²", "½mv²"], ans: 0, marks: 3 },
+      { q: "For a hollow sphere about diameter, I = ?", opts: ["2/3 mr²", "2/5 mr²", "½mr²", "mr²"], ans: 0, marks: 3 },
+      { q: "If no external torque acts, angular momentum is:", opts: ["Zero", "Changing", "Conserved (constant)", "Increasing"], ans: 2, marks: 3 },
+      { q: "The perpendicular axis theorem is valid for:", opts: ["3D bodies", "2D (planar) bodies", "Spheres only", "All shapes"], ans: 1, marks: 3 },
+      { q: "Center of mass position: xcm = ?", opts: ["Σmᵢxᵢ/M", "Σmᵢ/M", "M/Σmᵢxᵢ", "Σxᵢ/n"], ans: 0, marks: 3 },
+      { q: "If internal forces only act, the center of mass:", opts: ["Accelerates", "Decelerates", "Moves with constant velocity (or stays still)", "Stops"], ans: 2, marks: 3 },
+      { q: "Moment of inertia of a thin rod about one end:", opts: ["ML²/3", "ML²/12", "ML²/6", "ML²"], ans: 0, marks: 3 },
+      { q: "Moment of inertia of a thin rod about its center:", opts: ["ML²/3", "ML²/12", "ML²/6", "ML²"], ans: 1, marks: 3 },
+      { q: "The angular velocity ω in rad/s for n rpm:", opts: ["2πn/60", "πn/60", "2πn", "n/60"], ans: 0, marks: 3 },
+      { q: "For rolling without slipping: v = ?", opts: ["ωr", "ω/r", "ω²r", "ω+r"], ans: 0, marks: 3 },
+      { q: "A spinning ice skater pulls arms in. Angular velocity:", opts: ["Decreases", "Remains same", "Increases", "Becomes zero"], ans: 2, marks: 3 },
+      { q: "Centripetal acceleration for rotation: a = ?", opts: ["ω²r", "ωr", "ω²/r", "ω/r"], ans: 0, marks: 4 },
+      { q: "The moment of inertia of a disk about its axis:", opts: ["½mr²", "mr²", "⅓mr²", "¾mr²"], ans: 0, marks: 4 },
+      { q: "If a rod of mass M, length L rotates about end: I = ML²/3. About center it is:", opts: ["ML²/12", "ML²/6", "ML²/3", "ML²"], ans: 0, marks: 4 },
+      { q: "Total KE of rolling body = ?", opts: ["½mv² + ½Iω²", "½mv²", "½Iω²", "mv² + Iω²"], ans: 0, marks: 4 },
+      { q: "For a rolling sphere (solid), KE (translational/total) = ?", opts: ["5/7", "7/5", "2/7", "5/2"], ans: 0, marks: 4 },
+      { q: "Conservation of angular momentum: L₁ = L₂ means:", opts: ["I₁ω₁ = I₂ω₂", "I₁α₁ = I₂α₂", "m₁v₁ = m₂v₂", "No external force"], ans: 0, marks: 4 },
+      { q: "Moment of inertia depends on:", opts: ["Mass distribution relative to axis", "Only total mass", "Only shape", "Only size"], ans: 0, marks: 4 },
+      { q: "The center of mass of two equal masses m at distance d apart is at:", opts: ["d/2 from each", "d from one", "At one mass", "Cannot be determined"], ans: 0, marks: 4 },
+      { q: "Relation between linear and angular acceleration: a = ?", opts: ["αr", "α/r", "α²r", "α+r"], ans: 0, marks: 4 },
+      { q: "For rolling without slipping, friction does:", opts: ["Positive work", "Negative work", "Zero work", "Cannot be determined"], ans: 2, marks: 4 },
+      { q: "Torque = r × F. Torque is a ___ quantity.", opts: ["Scalar", "Vector", "Neither", "Both"], ans: 1, marks: 4 },
+      { q: "If moment of inertia doubles and angular momentum is conserved, ω becomes:", opts: ["Double", "Half", "Same", "Zero"], ans: 1, marks: 4 },
+      { q: "The unit of moment of inertia:", opts: ["kg·m", "kg·m²", "N·m", "kg/m²"], ans: 1, marks: 4 },
+      { q: "For a solid sphere rolling down a plane, acceleration = ?", opts: ["g sinθ", "5g sinθ/7", "2g sinθ/3", "g"], ans: 1, marks: 4 },
+      { q: "The center of mass of a semicircular wire of radius R:", opts: ["R from center", "2R/π from center", "R/2 from center", "At center"], ans: 1, marks: 4 },
+      { q: "Angular impulse = change in:", opts: ["Linear momentum", "Angular momentum", "Energy", "Force"], ans: 1, marks: 4 },
+      { q: "If external force on a system is zero, the center of mass:", opts: ["Accelerates", "Decelerates", "Moves with constant velocity or is at rest", "Cannot be determined"], ans: 2, marks: 4 },
+      { q: "For a thin shell (hollow sphere) about axis: I = ?", opts: ["2/5 mr²", "2/3 mr²", "½mr²", "mr²"], ans: 1, marks: 4 },
+      { q: "The velocity of center of mass: vcm = ?", opts: ["Σmᵢvᵢ/M", "Σvᵢ/n", "MΣmᵢvᵢ", "Σmᵢ/M"], ans: 0, marks: 4 },
+      { q: "For pure rolling, the point of contact has velocity:", opts: ["v", "2v", "0", "v/2"], ans: 2, marks: 4 },
+      { q: "Moment of inertia of a ring about its diameter:", opts: ["½mr²", "mr²", "¼mr²", "¾mr²"], ans: 0, marks: 5 },
+      { q: "The perpendicular axis theorem: Iz = ?", opts: ["Ix + Iy", "Ix - Iy", "Ix × Iy", "Ix / Iy"], ans: 0, marks: 5 },
+      { q: "For rolling without slipping, the condition is:", opts: ["v = ωr", "v ≠ ωr", "ω = 0", "v = 0"], ans: 0, marks: 5 },
+      { q: "Rotational analog of momentum is:", opts: ["Angular velocity", "Angular momentum (Iω)", "Torque", "Moment of inertia"], ans: 1, marks: 5 },
+      { q: "The kinetic energy of rotation = ?", opts: ["½Iω²", "½mv²", "Iω", "½Iα"], ans: 0, marks: 5 },
+      { q: "For a cylinder rolling down a plane, a = ?", opts: ["g sinθ", "g sinθ/2", "2g sinθ/3", "g sinθ/3"], ans: 2, marks: 5 },
+      { q: "Center of mass of a uniform triangular plate:", opts: ["At a vertex", "At centroid (intersection of medians)", "At midpoint of base", "At center of circumscribed circle"], ans: 1, marks: 5 },
+      { q: "If a body has both translational and rotational motion, total KE is:", opts: ["½mv²", "½Iω²", "½mv² + ½Iω²", "½mv² - ½Iω²"], ans: 2, marks: 5 },
+      { q: "The acceleration of center of mass: acm = ?", opts: ["Fext/M", "Σfᵢ/M", "Both A and B (same thing)", "Fint/M"], ans: 2, marks: 5 },
+      { q: "A solid sphere and a hollow sphere of same mass and radius roll down a frictionless incline. Which reaches bottom first?", opts: ["Solid sphere", "Hollow sphere", "Both at same time", "Neither rolls"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 8,
+    name: "Gravitation",
+    icon: "🌙",
+    color: "#eab308",
+    questions: [
+      { q: "Newton's law of gravitation: F = ?", opts: ["GMm/r²", "GMm/r", "Gm²/r²", "GM²m²/r²"], ans: 0, marks: 3 },
+      { q: "The gravitational constant G ≈ ?", opts: ["6.67 × 10⁻¹¹ N·m²/kg²", "9.8 m/s²", "6.67 × 10⁻²³", "3 × 10⁸ m/s"], ans: 0, marks: 3 },
+      { q: "g at Earth's surface ≈ ?", opts: ["9.8 m/s²", "9.8 m/s", "10 m/s²", "Both A and C approximately"], ans: 3, marks: 3 },
+      { q: "g at height h above surface: g' = ?", opts: ["g(R/(R+h))²", "g(1-h/R)", "g(R+h)²/R²", "g"], ans: 0, marks: 3 },
+      { q: "g at depth d below surface: g' = ?", opts: ["g(1-d/R)", "g(1+d/R)", "g(R/(R-d))²", "0"], ans: 0, marks: 3 },
+      { q: "Orbital velocity of satellite: v = ?", opts: ["√(gR)", "√(GM/r)", "Both A (at surface) and B", "gR"], ans: 2, marks: 3 },
+      { q: "Escape velocity: ve = ?", opts: ["√(2gR)", "√(gR)", "2√(gR)", "√(2GM/R)"], ans: 0, marks: 3 },
+      { q: "ve = √2 × vorbit. This means escape velocity is:", opts: ["Equal to orbital velocity", "√2 times orbital velocity", "2 times orbital velocity", "Half orbital velocity"], ans: 1, marks: 3 },
+      { q: "Gravitational PE: U = ?", opts: ["GMm/r", "-GMm/r", "GMm/r²", "-GMm/r²"], ans: 1, marks: 3 },
+      { q: "The period of orbit: T = ?", opts: ["2πr/v", "2π√(r³/GM)", "Both A and B", "πr/v"], ans: 2, marks: 3 },
+      { q: "Kepler's third law: T² ∝ ?", opts: ["r", "r²", "r³", "r⁴"], ans: 2, marks: 3 },
+      { q: "Gravitational force is:", opts: ["Always repulsive", "Always attractive", "Can be repulsive or attractive", "Zero at infinity"], ans: 1, marks: 3 },
+      { q: "For a satellite in circular orbit, gravitational force provides:", opts: ["Tangential force", "Centripetal force", "Both", "Neither"], ans: 1, marks: 3 },
+      { q: "The gravitational field intensity g = ?", opts: ["GM/r²", "GMm/r²", "G/r²", "Gm/r²"], ans: 0, marks: 3 },
+      { q: "At what height does g become g/4?", opts: ["R", "2R", "R/2", "3R"], ans: 0, marks: 3 },
+      { q: "The total energy of a satellite in circular orbit: E = ?", opts: ["-GMm/2r", "GMm/r", "-GMm/r", "GMm/2r"], ans: 0, marks: 3 },
+      { q: "A geostationary satellite has period:", opts: ["12 hours", "24 hours", "1 hour", "48 hours"], ans: 1, marks: 3 },
+      { q: "Geostationary orbit is in which plane?", opts: ["Polar plane", "Equatorial plane", "Any plane", "Inclined plane"], ans: 1, marks: 3 },
+      { q: "The gravitational potential at distance r: V = ?", opts: ["GM/r", "-GM/r", "GMm/r", "-GMm/r"], ans: 1, marks: 3 },
+      { q: "If orbital radius doubles, orbital velocity becomes:", opts: ["Double", "Half", "1/√2 times", "√2 times"], ans: 2, marks: 3 },
+      { q: "At the center of Earth, g = ?", opts: ["9.8 m/s²", "0", "19.6 m/s²", "Undefined"], ans: 1, marks: 4 },
+      { q: "Kepler's first law states orbits are:", opts: ["Circular", "Elliptical", "Parabolic", "Hyperbolic"], ans: 1, marks: 4 },
+      { q: "The escape velocity from Earth ≈ ?", opts: ["11.2 km/s", "9.8 km/s", "7.9 km/s", "3 × 10⁵ km/s"], ans: 0, marks: 4 },
+      { q: "Orbital velocity at Earth's surface ≈ ?", opts: ["11.2 km/s", "9.8 km/s", "7.9 km/s", "5.6 km/s"], ans: 2, marks: 4 },
+      { q: "If a satellite's speed is doubled, it will:", opts: ["Stay in same orbit", "Move to higher orbit", "Fall to Earth", "Escape Earth's gravity"], ans: 3, marks: 4 },
+      { q: "Gravitational force between Earth and Moon:", opts: ["Obeys inverse square law", "Is attractive", "Acts along line joining centers", "All of the above"], ans: 3, marks: 4 },
+      { q: "Period of low Earth satellite (at surface) T ≈ ?", opts: ["24 hours", "12 hours", "84 minutes", "1 minute"], ans: 2, marks: 4 },
+      { q: "The potential energy of a satellite at distance r from Earth's center is negative because:", opts: ["Convention", "Energy needed to bring from infinity", "Gravity does negative work", "All of the above"], ans: 3, marks: 4 },
+      { q: "For a satellite, KE = ?", opts: ["GMm/2r", "-GMm/2r", "GMm/r", "-GMm/r"], ans: 0, marks: 4 },
+      { q: "g varies with latitude because:", opts: ["Earth is not uniform", "Earth is oblate spheroid and rotates", "Moon's gravity", "Sun's gravity"], ans: 1, marks: 4 },
+      { q: "The force of gravity on a mass m at distance r: F ∝ ?", opts: ["1/r", "1/r²", "r", "r²"], ans: 1, marks: 4 },
+      { q: "Kepler's second law: Equal areas are swept in:", opts: ["Equal distances", "Equal times", "Equal velocities", "Equal forces"], ans: 1, marks: 4 },
+      { q: "The gravitational field is a ___ field.", opts: ["Scalar", "Vector", "Neither", "Both"], ans: 1, marks: 4 },
+      { q: "For circular orbit: v² = ?", opts: ["GM/r", "2GM/r", "GM/r²", "GMr"], ans: 0, marks: 4 },
+      { q: "If Earth's mass doubles and radius stays same, g becomes:", opts: ["Same", "Double", "Half", "4 times"], ans: 1, marks: 4 },
+      { q: "If Earth's radius doubles and mass stays same, g becomes:", opts: ["Same", "Double", "Half", "Quarter"], ans: 3, marks: 4 },
+      { q: "The binding energy of a satellite = ?", opts: ["GMm/2r", "GMm/r", "½mv²", "Both A and C"], ans: 3, marks: 4 },
+      { q: "At what distance is gravitational force zero?", opts: ["At center of Earth", "At infinity", "At Earth's surface", "Never zero (except at infinity)"], ans: 3, marks: 4 },
+      { q: "The acceleration due to gravity at depth d: g' = g(1-d/R). At d = R/2:", opts: ["g/2", "g/4", "g", "0"], ans: 0, marks: 4 },
+      { q: "For two satellites at r and 2r, ratio of periods T₁/T₂:", opts: ["1/2√2", "1/√2", "√2", "2√2"], ans: 0, marks: 4 },
+      { q: "Weightlessness occurs when:", opts: ["Object is on ground", "Object is in free fall", "Object has maximum velocity", "g = 0 (which doesn't really happen)"], ans: 1, marks: 5 },
+      { q: "The gravitational force is:", opts: ["Contact force", "Non-contact force", "Short range force", "Both A and B"], ans: 1, marks: 5 },
+      { q: "A satellite launched with velocity less than orbital velocity will:", opts: ["Orbit in circle", "Move to higher orbit", "Fall back to Earth", "Escape"], ans: 2, marks: 5 },
+      { q: "The Sun's gravitational force on Earth >> Moon's on Earth because:", opts: ["Sun is closer", "Sun is much more massive", "Moon doesn't attract", "Sun is hotter"], ans: 1, marks: 5 },
+      { q: "At height h = R, g' = ?", opts: ["g", "g/2", "g/4", "0"], ans: 2, marks: 5 },
+      { q: "Orbital velocity is independent of:", opts: ["Mass of satellite", "Radius of orbit", "Mass of Earth", "G"], ans: 0, marks: 5 },
+      { q: "The ratio of escape velocity to orbital velocity:", opts: ["1:1", "√2:1", "1:√2", "2:1"], ans: 1, marks: 5 },
+      { q: "For a satellite, PE/KE = ?", opts: ["1", "-1", "-2", "2"], ans: 2, marks: 5 },
+      { q: "Moon's orbital period ≈ ?", opts: ["1 day", "7 days", "27.3 days", "365 days"], ans: 2, marks: 5 },
+      { q: "Two satellites orbit Earth at radii r and 4r. The ratio of their orbital periods T₁:T₂ is:", opts: ["1:8", "1:4", "1:2", "1:16"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 9,
+    name: "Mechanical Properties of Solids",
+    icon: "🧱",
+    color: "#84cc16",
+    questions: [
+      { q: "Stress = ?", opts: ["Force/Area", "Force × Area", "Area/Force", "Force/Volume"], ans: 0, marks: 3 },
+      { q: "Strain = ?", opts: ["ΔL/L", "Force/Area", "ΔL × L", "L/ΔL"], ans: 0, marks: 3 },
+      { q: "Young's modulus Y = ?", opts: ["Stress/Strain", "Strain/Stress", "Force/Area", "ΔL/L"], ans: 0, marks: 3 },
+      { q: "Hooke's law states: F = ?", opts: ["kx", "k/x", "kx²", "k×x²"], ans: 0, marks: 3 },
+      { q: "The SI unit of stress is:", opts: ["Newton", "Pascal (N/m²)", "Joule", "Watt"], ans: 1, marks: 3 },
+      { q: "Strain is:", opts: ["Dimensionless", "Has units of m", "Has units of N/m²", "Has units of kg"], ans: 0, marks: 3 },
+      { q: "Bulk modulus K = ?", opts: ["-V(ΔP/ΔV)", "ΔP/ΔV", "V/ΔP", "ΔV/(VΔP)"], ans: 0, marks: 3 },
+      { q: "Shear modulus (modulus of rigidity) G = ?", opts: ["Shear stress/Shear strain", "Normal stress/Normal strain", "Stress × Strain", "Stress + Strain"], ans: 0, marks: 3 },
+      { q: "The proportional limit is the point beyond which:", opts: ["Hooke's law fails", "Material breaks", "Stress = 0", "Strain = 0"], ans: 0, marks: 3 },
+      { q: "Elastic limit is the point beyond which:", opts: ["Strain becomes zero", "Material deforms permanently", "Stress = 0", "Material vaporizes"], ans: 1, marks: 3 },
+      { q: "Beyond elastic limit, deformation is:", opts: ["Elastic", "Plastic", "Zero", "Temporary"], ans: 1, marks: 3 },
+      { q: "The breaking stress (ultimate stress) is the stress at:", opts: ["Elastic limit", "Fracture point", "Proportional limit", "Zero strain"], ans: 1, marks: 3 },
+      { q: "Energy stored per unit volume in a spring: u = ?", opts: ["½(Stress × Strain)", "Stress × Strain", "½(Stress/Strain)", "Stress/Strain"], ans: 0, marks: 3 },
+      { q: "For a wire of length L, area A, stretched by ΔL: Y = ?", opts: ["FL/(AΔL)", "FA/(LΔL)", "FΔL/(AL)", "FL/(A)"], ans: 0, marks: 3 },
+      { q: "Poisson's ratio σ = ?", opts: ["Lateral strain/Longitudinal strain", "Longitudinal strain/Lateral strain", "Stress/Strain", "Strain/Stress"], ans: 0, marks: 3 },
+      { q: "Poisson's ratio range for most materials:", opts: ["0 to 0.5", "-1 to 1", "0 to 1", "0 to 0.25 only"], ans: 0, marks: 3 },
+      { q: "Steel is more elastic than rubber because:", opts: ["Steel deforms less for same stress", "Steel breaks easily", "Rubber is stronger", "Steel is lighter"], ans: 0, marks: 3 },
+      { q: "The area under stress-strain curve gives:", opts: ["Force", "Energy per unit volume", "Young's modulus", "Strain rate"], ans: 1, marks: 3 },
+      { q: "Compressibility is the reciprocal of:", opts: ["Young's modulus", "Shear modulus", "Bulk modulus", "Poisson's ratio"], ans: 2, marks: 3 },
+      { q: "For a rubber band, the stress-strain curve is:", opts: ["Linear", "Non-linear (hysteresis loop)", "Vertical line", "Horizontal line"], ans: 1, marks: 3 },
+      { q: "The elastic PE stored in a stretched wire: E = ?", opts: ["½(F×ΔL)", "F×ΔL", "½(F/ΔL)", "F×L"], ans: 0, marks: 4 },
+      { q: "If length doubles and area halves, Y remains:", opts: ["Same (material property)", "Double", "Half", "Quarter"], ans: 0, marks: 4 },
+      { q: "Young's modulus of steel > rubber because:", opts: ["Steel is more rigid", "Rubber is lighter", "Steel conducts heat", "Steel is magnetic"], ans: 0, marks: 4 },
+      { q: "The extension of a wire ΔL = ?", opts: ["FL/(AY)", "FY/(AL)", "AY/(FL)", "FA/(LY)"], ans: 0, marks: 4 },
+      { q: "Lateral contraction in stretching is due to:", opts: ["Poisson's effect", "Hooke's law", "Bulk modulus", "Gravity"], ans: 0, marks: 4 },
+      { q: "Two wires of same material, one twice the length, same area. Stretched by same force. Extension ratio:", opts: ["1:2", "2:1", "1:1", "1:4"], ans: 0, marks: 4 },
+      { q: "The unit of Young's modulus is:", opts: ["N/m² (Pa)", "N·m", "N", "m²/N"], ans: 0, marks: 4 },
+      { q: "A wire's spring constant k = ?", opts: ["YA/L", "YL/A", "Y/(AL)", "AL/Y"], ans: 0, marks: 4 },
+      { q: "Two springs in series, spring constants k₁ and k₂. Effective k:", opts: ["k₁k₂/(k₁+k₂)", "k₁+k₂", "k₁-k₂", "(k₁+k₂)/2"], ans: 0, marks: 4 },
+      { q: "Two springs in parallel, effective k:", opts: ["k₁k₂/(k₁+k₂)", "k₁+k₂", "k₁-k₂", "(k₁-k₂)/2"], ans: 1, marks: 4 },
+      { q: "Plastic deformation means the material:", opts: ["Returns to original shape", "Does not return to original shape", "Breaks immediately", "Has zero stress"], ans: 1, marks: 4 },
+      { q: "For a given material, elastic moduli are:", opts: ["Constants at given temperature", "Always changing", "Zero", "Negative"], ans: 0, marks: 4 },
+      { q: "The work done in stretching a wire = ?", opts: ["½FΔL", "FΔL", "F/ΔL", "2FΔL"], ans: 0, marks: 4 },
+      { q: "Modulus of rigidity applies to:", opts: ["Volume change", "Shape change (shearing)", "Length change", "All deformations"], ans: 1, marks: 4 },
+      { q: "When a wire is heated, it expands. The effective Young's modulus:", opts: ["Increases", "Decreases generally", "Stays same", "Becomes negative"], ans: 1, marks: 4 },
+      { q: "For a cube under uniform pressure P, volume strain = ?", opts: ["ΔV/V", "P/K", "Both A and B", "P×V"], ans: 2, marks: 4 },
+      { q: "The maximum stress a material can withstand is called:", opts: ["Young's modulus", "Ultimate stress/Tensile strength", "Elastic limit", "Breaking point"], ans: 1, marks: 4 },
+      { q: "Strain energy density = ?", opts: ["½(stress)(strain)", "stress × strain", "½(stress/strain)", "stress/strain"], ans: 0, marks: 4 },
+      { q: "For elastic collision of identical balls, the first ball:", opts: ["Continues moving", "Stops", "Bounces back", "Both move"], ans: 1, marks: 4 },
+      { q: "The relationship Y, K, G: Y = ?", opts: ["3K(1-2σ)", "2G(1+σ)", "9KG/(3K+G)", "All of the above"], ans: 3, marks: 4 },
+      { q: "A wire's resistance to deformation increases with:", opts: ["Increasing length", "Increasing area", "Increasing temperature", "Increasing Young's modulus"], ans: 3, marks: 5 },
+      { q: "Stress is a ___ quantity:", opts: ["Scalar", "Vector", "Tensor", "Neither"], ans: 2, marks: 5 },
+      { q: "For a column under compression, buckling occurs due to:", opts: ["Tension only", "Compression and lateral force", "Gravity only", "None of these"], ans: 1, marks: 5 },
+      { q: "The thermal stress in a rod fixed at both ends: σ = ?", opts: ["YαΔT", "αΔT/Y", "Y/αΔT", "α+Y+ΔT"], ans: 0, marks: 5 },
+      { q: "If two wires of same material and length but area ratio 2:1 are stretched by same force, stress ratio:", opts: ["1:2", "2:1", "1:1", "4:1"], ans: 0, marks: 5 },
+      { q: "Young's modulus is a property of:", opts: ["Individual wire", "The material", "The shape", "The force applied"], ans: 1, marks: 5 },
+      { q: "The elastic potential energy in a spring compressed by x: U = ?", opts: ["½kx²", "kx²", "½kx", "kx"], ans: 0, marks: 5 },
+      { q: "For a wire, strain energy E = ?", opts: ["Y²A(ΔL)²/2L", "F²L/(2AY)", "Both B and derived equivalents", "None"], ans: 2, marks: 5 },
+      { q: "Copper wire extends 1mm under F. If F is doubled, extension = ?", opts: ["1mm", "2mm", "4mm", "0.5mm"], ans: 1, marks: 5 },
+      { q: "Two wires of same material, lengths L and 2L, areas A and 2A carry same load. Ratio of extensions:", opts: ["1:1", "1:2", "2:1", "1:4"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 10,
+    name: "Mechanical Properties of Fluids",
+    icon: "💧",
+    color: "#06b6d4",
+    questions: [
+      { q: "Pressure P = ?", opts: ["Force/Area", "Force × Area", "Area/Force", "Force/Volume"], ans: 0, marks: 3 },
+      { q: "The SI unit of pressure is:", opts: ["Newton", "Pascal", "Joule", "Bar"], ans: 1, marks: 3 },
+      { q: "1 atmosphere = ?", opts: ["101325 Pa", "100000 Pa", "10000 Pa", "1000 Pa"], ans: 0, marks: 3 },
+      { q: "Pascal's law states that pressure applied to a fluid is:", opts: ["Transmitted equally in all directions", "Only transmitted downward", "Not transmitted", "Reduced"], ans: 0, marks: 3 },
+      { q: "Pressure at depth h in a fluid: P = ?", opts: ["ρgh", "ρg/h", "ρ/gh", "h/ρg"], ans: 0, marks: 3 },
+      { q: "Bernoulli's equation: P + ½ρv² + ρgh = ?", opts: ["0", "constant along streamline", "ρgh", "½ρv²"], ans: 1, marks: 3 },
+      { q: "According to Bernoulli's principle, where velocity is high, pressure is:", opts: ["High", "Low", "Same", "Zero"], ans: 1, marks: 3 },
+      { q: "The coefficient of viscosity η has SI unit:", opts: ["Pa·s", "Pa/s", "Pa·m", "Pa"], ans: 0, marks: 3 },
+      { q: "Stokes' law: drag force on sphere = ?", opts: ["6πηrv", "4πηrv", "6πηr²v", "2πηrv"], ans: 0, marks: 3 },
+      { q: "Terminal velocity: vt = ?", opts: ["2r²(ρ-ρ')g/9η", "r²(ρ-ρ')g/9η", "2r²ρg/9η", "r²ρg/18η"], ans: 0, marks: 3 },
+      { q: "Surface tension S = ?", opts: ["Force/Length", "Force × Length", "Force/Area", "Energy/Area (both A and D same dim)"], ans: 3, marks: 3 },
+      { q: "The SI unit of surface tension is:", opts: ["N/m", "N·m", "N/m²", "N"], ans: 0, marks: 3 },
+      { q: "Excess pressure inside a soap bubble: ΔP = ?", opts: ["2S/r", "4S/r", "S/r", "S/(2r)"], ans: 1, marks: 3 },
+      { q: "Excess pressure inside a liquid drop: ΔP = ?", opts: ["2S/r", "4S/r", "S/r", "8S/r"], ans: 0, marks: 3 },
+      { q: "Capillary rise: h = ?", opts: ["2S cosθ/(ρgr)", "S cosθ/(ρgr)", "2S/(ρgr)", "S/(2ρgr)"], ans: 0, marks: 3 },
+      { q: "For water in glass capillary (wetting liquid), the meniscus is:", opts: ["Concave", "Convex", "Flat", "Irregular"], ans: 0, marks: 3 },
+      { q: "For mercury in glass (non-wetting), the meniscus is:", opts: ["Concave", "Convex", "Flat", "Irregular"], ans: 1, marks: 3 },
+      { q: "Continuity equation: A₁v₁ = ?", opts: ["A₂v₂", "A₁v₂", "A₂v₁", "constant"], ans: 3, marks: 3 },
+      { q: "Poiseuille's equation gives flow rate Q ∝ ?", opts: ["r⁴ΔP", "r²ΔP", "rΔP", "r⁴ΔP/L (full form)"], ans: 3, marks: 3 },
+      { q: "Reynolds number Re = ?", opts: ["ρvd/η", "ηvd/ρ", "ρv/(ηd)", "ρd/(ηv)"], ans: 0, marks: 3 },
+      { q: "Flow becomes turbulent when Re >", opts: ["500", "2000", "1000", "100"], ans: 1, marks: 4 },
+      { q: "Hydraulic press works on:", opts: ["Bernoulli's principle", "Pascal's law", "Archimedes' principle", "Hooke's law"], ans: 1, marks: 4 },
+      { q: "Archimedes' principle: Buoyant force equals:", opts: ["Weight of object", "Weight of fluid displaced", "Weight of container", "Pressure × area"], ans: 1, marks: 4 },
+      { q: "An object floats when:", opts: ["Its density > fluid density", "Its density < fluid density", "Its density = fluid density", "Its mass > fluid mass"], ans: 1, marks: 4 },
+      { q: "For a floating object, fraction submerged = ?", opts: ["ρ_object/ρ_fluid", "ρ_fluid/ρ_object", "mass/volume", "g/volume"], ans: 0, marks: 4 },
+      { q: "Viscosity decreases with temperature for:", opts: ["Liquids", "Gases", "Both", "Neither"], ans: 0, marks: 4 },
+      { q: "Viscosity increases with temperature for:", opts: ["Liquids", "Gases", "Both", "Neither"], ans: 1, marks: 4 },
+      { q: "The venturi meter works on:", opts: ["Pascal's law", "Bernoulli's equation", "Archimedes' principle", "Hooke's law"], ans: 1, marks: 4 },
+      { q: "An airplane wing generates lift because of:", opts: ["Bernoulli effect (pressure difference)", "Weight only", "Friction", "Gravity"], ans: 0, marks: 4 },
+      { q: "Surface tension causes:", opts: ["Only capillary rise", "Only bubble formation", "Minimization of surface area", "All of the above"], ans: 2, marks: 4 },
+      { q: "Pressure at bottom of a container depends on:", opts: ["Only height of liquid", "Height and density of liquid", "Shape of container", "Both B (independent of shape)"], ans: 3, marks: 4 },
+      { q: "If radius of capillary doubles, height of rise becomes:", opts: ["Double", "Half", "Same", "Quarter"], ans: 1, marks: 4 },
+      { q: "For a perfect fluid, viscosity is:", opts: ["Maximum", "Zero", "Infinite", "Undefined"], ans: 1, marks: 4 },
+      { q: "Newton's law of viscosity: F/A = η(dv/dy). η is:", opts: ["Coefficient of viscosity", "Dynamic viscosity", "Both A and B", "Kinematic viscosity"], ans: 2, marks: 4 },
+      { q: "Kinematic viscosity ν = ?", opts: ["η/ρ", "ηρ", "η+ρ", "ρ/η"], ans: 0, marks: 4 },
+      { q: "The work done by surface tension in increasing area by dA: dW = ?", opts: ["S × dA", "S/dA", "S × dA²", "0"], ans: 0, marks: 4 },
+      { q: "Gauge pressure = ?", opts: ["Absolute pressure", "Absolute pressure - atmospheric", "Atmospheric pressure", "Zero"], ans: 1, marks: 4 },
+      { q: "The excess pressure in a cylindrical bubble (one surface): ΔP = ?", opts: ["2S/r", "S/r", "4S/r", "S/(2r)"], ans: 0, marks: 4 },
+      { q: "Soap bubble has two surfaces, so excess pressure = ?", opts: ["2S/r", "4S/r", "S/r", "8S/r"], ans: 1, marks: 4 },
+      { q: "When two soap bubbles coalesce, the pressure in the combined bubble:", opts: ["Increases", "Decreases", "Stays same", "Cannot determine without data"], ans: 3, marks: 4 },
+      { q: "The unit of dynamic viscosity in CGS is:", opts: ["Poise", "Stokes", "Dyne/cm²", "cm²/s"], ans: 0, marks: 5 },
+      { q: "1 Poise = ?", opts: ["0.1 Pa·s", "1 Pa·s", "10 Pa·s", "0.01 Pa·s"], ans: 0, marks: 5 },
+      { q: "For laminar flow through a pipe, velocity profile is:", opts: ["Uniform", "Parabolic", "Linear", "Turbulent"], ans: 1, marks: 5 },
+      { q: "A ball falling in viscous fluid reaches terminal velocity when:", opts: ["Drag = Weight", "Drag = Buoyancy", "Weight = Drag + Buoyancy", "Net force = 0 (Weight = Drag + Buoyancy)"], ans: 3, marks: 5 },
+      { q: "The contact angle for water-glass is:", opts: ["0° (complete wetting)", "< 90°", "90°", "> 90°"], ans: 1, marks: 5 },
+      { q: "For mercury-glass, contact angle is:", opts: ["< 90°", "90°", "> 90° (obtuse)", "180°"], ans: 2, marks: 5 },
+      { q: "Pressure increases with depth in a fluid because:", opts: ["Weight of fluid above increases", "Temperature increases", "Velocity increases", "Density increases"], ans: 0, marks: 5 },
+      { q: "Surface tension is a property of:", opts: ["Bulk fluid", "The interface/surface", "The container", "The temperature only"], ans: 1, marks: 5 },
+      { q: "The capillary depression occurs for:", opts: ["Water in glass", "Mercury in glass", "Water in plastic", "All liquids"], ans: 1, marks: 5 },
+      { q: "A U-tube has mercury. Oil of density ρ and height h is poured in one arm. The mercury level difference is:", opts: ["ρh/ρ_Hg", "ρh", "ρ_Hg/ρh", "2ρh/ρ_Hg"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 11,
+    name: "Thermal Properties of Matter",
+    icon: "🌡️",
+    color: "#3b82f6",
+    questions: [
+      { q: "The SI unit of temperature is:", opts: ["Celsius", "Fahrenheit", "Kelvin", "Rankine"], ans: 2, marks: 3 },
+      { q: "0°C = ? K", opts: ["0", "100", "273.15", "373.15"], ans: 2, marks: 3 },
+      { q: "100°C = ? K", opts: ["100", "273.15", "373.15", "473.15"], ans: 2, marks: 3 },
+      { q: "Thermal expansion coefficient α (linear) is defined as:", opts: ["ΔL/(LΔT)", "L/(ΔLΔT)", "ΔL×L/ΔT", "ΔT/(LΔL)"], ans: 0, marks: 3 },
+      { q: "For volume expansion: βv = ?", opts: ["3α", "2α", "α", "α/3"], ans: 0, marks: 3 },
+      { q: "For area expansion: βA = ?", opts: ["3α", "2α", "α", "α/2"], ans: 1, marks: 3 },
+      { q: "Specific heat capacity c = ?", opts: ["Q/(mΔT)", "mΔT/Q", "Q/(m×T)", "m/(QΔT)"], ans: 0, marks: 3 },
+      { q: "The SI unit of specific heat is:", opts: ["J/(kg·K)", "cal/(g·°C)", "J/K", "J·kg"], ans: 0, marks: 3 },
+      { q: "Calorimetry principle: Heat lost = ?", opts: ["Heat gained", "Heat destroyed", "Work done", "Zero"], ans: 0, marks: 3 },
+      { q: "Latent heat of fusion is the heat to:", opts: ["Raise temperature by 1°C", "Change state at constant temperature (solid→liquid)", "Change temperature", "Heat to boiling"], ans: 1, marks: 3 },
+      { q: "Latent heat of vaporization: heat to change from:", opts: ["Solid to liquid", "Liquid to gas at constant temperature", "Gas to solid", "Any state change"], ans: 1, marks: 3 },
+      { q: "Newton's law of cooling: dT/dt ∝ ?", opts: ["T - T₀ (temperature difference)", "T only", "t (time)", "1/T"], ans: 0, marks: 3 },
+      { q: "Heat conduction rate: dQ/dt = ?", opts: ["kA(T₁-T₂)/L", "kAL/(T₁-T₂)", "k(T₁-T₂)/(AL)", "kA(T₁-T₂)L"], ans: 0, marks: 3 },
+      { q: "Thermal conductivity k has SI unit:", opts: ["W/(m·K)", "W·m·K", "J/(m·K)", "W/K"], ans: 0, marks: 3 },
+      { q: "Best conductor of heat is:", opts: ["Silver", "Copper", "Gold", "Diamond (thermal conductivity)"], ans: 3, marks: 3 },
+      { q: "Water has anomalous behavior: density is maximum at:", opts: ["0°C", "4°C", "100°C", "-4°C"], ans: 1, marks: 3 },
+      { q: "Which has higher specific heat: water or iron?", opts: ["Water", "Iron", "They are equal", "Depends on temperature"], ans: 0, marks: 3 },
+      { q: "Specific heat of water = ?", opts: ["4186 J/(kg·K)", "1 cal/(g·°C)", "Both A and B (same)", "4186 J/(kg·°C)"], ans: 2, marks: 3 },
+      { q: "Heat transfer by radiation follows Stefan's law: P = ?", opts: ["σAT⁴", "σT⁴", "σAT²", "σA²T⁴"], ans: 0, marks: 3 },
+      { q: "Stefan-Boltzmann constant σ ≈ ?", opts: ["5.67 × 10⁻⁸ W/(m²·K⁴)", "1.38 × 10⁻²³", "6.67 × 10⁻¹¹", "8.314"], ans: 0, marks: 3 },
+      { q: "Wien's displacement law: λmax × T = ?", opts: ["b (constant ≈ 2.9×10⁻³ m·K)", "σ", "h", "k"], ans: 0, marks: 4 },
+      { q: "When temperature increases, what happens to expansion?", opts: ["Expansion increases", "Expansion decreases", "No change", "Expansion becomes negative"], ans: 0, marks: 4 },
+      { q: "A bimetallic strip bends because:", opts: ["Both metals expand equally", "Both metals have different expansion coefficients", "One metal melts", "Gravity causes bending"], ans: 1, marks: 4 },
+      { q: "In calorimetry: m₁c₁(T₁-T) = ?", opts: ["m₂c₂(T-T₂)", "m₁c₁(T-T₁)", "0", "m₂c₂T₂"], ans: 0, marks: 4 },
+      { q: "The temperature at which ice melts at 1 atm is:", opts: ["0 K", "0°C", "273.15 K", "Both B and C"], ans: 3, marks: 4 },
+      { q: "Triple point of water is:", opts: ["0°C, 1 atm", "100°C, 1 atm", "0.01°C, 611.73 Pa", "100°C, 0 atm"], ans: 2, marks: 4 },
+      { q: "During phase change, temperature:", opts: ["Increases", "Decreases", "Remains constant", "Fluctuates"], ans: 2, marks: 4 },
+      { q: "If you double the thickness of a slab, heat conduction rate:", opts: ["Doubles", "Halves", "Remains same", "Quadruples"], ans: 1, marks: 4 },
+      { q: "Thermal resistance R = ?", opts: ["L/(kA)", "kA/L", "L×k×A", "k/(LA)"], ans: 0, marks: 4 },
+      { q: "Two slabs in series: total thermal resistance = ?", opts: ["R₁ × R₂", "R₁ + R₂", "R₁ - R₂", "1/(R₁+R₂)"], ans: 1, marks: 4 },
+      { q: "Absolute zero (0 K) = ?°C", opts: ["-273.15°C", "0°C", "-100°C", "-373.15°C"], ans: 0, marks: 4 },
+      { q: "Heat transfer by convection requires:", opts: ["Vacuum", "Fluid medium", "Electromagnetic waves", "Solid medium only"], ans: 1, marks: 4 },
+      { q: "Radiation can transfer heat through:", opts: ["Only solids", "Only liquids", "Only vacuum (and any medium)", "None"], ans: 2, marks: 4 },
+      { q: "A black body has absorptivity/emissivity =", opts: ["0", "0.5", "1", ">1"], ans: 2, marks: 4 },
+      { q: "Emissivity of a perfect reflector =", opts: ["0", "0.5", "1", ">1"], ans: 0, marks: 4 },
+      { q: "The heat capacity C = ?", opts: ["mc", "c/m", "Q/m", "Q/(mΔT)"], ans: 0, marks: 4 },
+      { q: "Cooling rate by Newton's law is valid when ΔT is:", opts: ["Very large", "Small", "Zero", "Any value"], ans: 1, marks: 4 },
+      { q: "The temperature coefficient of resistance: α_R. For metals, α_R is:", opts: ["Negative", "Positive", "Zero", "Undefined"], ans: 1, marks: 4 },
+      { q: "If Q = mcΔT, and Q = 4200J, m = 1kg, ΔT = 1K, then c = ?", opts: ["4200 J/(kg·K)", "1 J/(kg·K)", "4200 kg·K/J", "0.42 J/(kg·K)"], ans: 0, marks: 4 },
+      { q: "Latent heat of vaporization > Latent heat of fusion because:", opts: ["More energy needed to break bonds completely", "Vaporization takes longer", "Fusion requires less temperature", "Both A and C"], ans: 0, marks: 4 },
+      { q: "In a thermos flask, radiation is reduced by:", opts: ["Insulation", "Silvered walls (reflection)", "Vacuum", "Both B and C"], ans: 3, marks: 5 },
+      { q: "The rate of cooling of a hot body is proportional to:", opts: ["Its temperature", "Temperature difference with surroundings", "Its mass", "Its volume"], ans: 1, marks: 5 },
+      { q: "1 calorie = ? Joules", opts: ["4.186 J", "4.186 kJ", "0.4186 J", "41.86 J"], ans: 0, marks: 5 },
+      { q: "When ice at 0°C melts to water at 0°C, which changes?", opts: ["Temperature", "Internal energy", "Both temperature and IE", "Neither"], ans: 1, marks: 5 },
+      { q: "The melting point of a substance increases with pressure for:", opts: ["Most substances", "Water (anomalous)", "All substances", "No substances"], ans: 0, marks: 5 },
+      { q: "For water, melting point decreases with pressure because:", opts: ["Ice is denser than water", "Ice is less dense than water", "Water is solid", "Pressure has no effect"], ans: 1, marks: 5 },
+      { q: "Thermal conductivity of gases is much lower than solids because:", opts: ["Gas molecules are far apart", "Gas has no molecules", "Gases are hotter", "Pressure is low"], ans: 0, marks: 5 },
+      { q: "A body at higher temperature radiates:", opts: ["More energy per unit area", "Less energy", "Same energy", "No energy"], ans: 0, marks: 5 },
+      { q: "The specific latent heat of fusion of ice ≈ ?", opts: ["334 kJ/kg", "2260 kJ/kg", "100 kJ/kg", "4.186 kJ/kg"], ans: 0, marks: 5 },
+      { q: "Two rods of same length, areas A and 2A, thermal conductivities k and 2k, are connected in series. Equivalent k is:", opts: ["4k/3", "2k/3", "k", "3k/2"], ans: 0, marks: 5 },
+    ]
+  },
+  {
+    id: 12,
+    name: "Thermodynamics",
+    icon: "🔥",
+    color: "#f59e0b",
+    questions: [
+      { q: "The zeroth law of thermodynamics states:", opts: ["Energy is conserved", "Entropy always increases", "If A is in equilibrium with B and B with C, then A is in equilibrium with C", "Absolute zero is unattainable"], ans: 2, marks: 3 },
+      { q: "First law: ΔU = ?", opts: ["Q + W", "Q - W", "Q × W", "Q / W"], ans: 0, marks: 3 },
+      { q: "For an isothermal process, temperature is:", opts: ["Changing", "Constant", "Zero", "Maximum"], ans: 1, marks: 3 },
+      { q: "For an adiabatic process, heat exchange Q = ?", opts: ["Maximum", "Zero", "Positive", "Negative"], ans: 1, marks: 3 },
+      { q: "For an isochoric (constant volume) process, work W = ?", opts: ["PΔV", "Zero (ΔV=0)", "Maximum", "Negative"], ans: 1, marks: 3 },
+      { q: "For an isobaric process, pressure is:", opts: ["Zero", "Maximum", "Constant", "Changing"], ans: 2, marks: 3 },
+      { q: "Efficiency of Carnot engine: η = ?", opts: ["1 - T₂/T₁", "T₂/T₁", "1 - T₁/T₂", "(T₁-T₂)/T₁ (same as A)"], ans: 3, marks: 3 },
+      { q: "The second law states entropy:", opts: ["Always decreases", "Always increases or stays same (in isolated system)", "Remains constant", "Can be negative"], ans: 1, marks: 3 },
+      { q: "COP of a refrigerator = ?", opts: ["Q₂/W", "Q₁/W", "W/Q₂", "η"], ans: 0, marks: 3 },
+      { q: "For an ideal gas: PV = ?", opts: ["nRT", "nR/T", "RT/n", "PV/nR"], ans: 0, marks: 3 },
+      { q: "In an isothermal process for ideal gas: PV = ?", opts: ["constant", "0", "T", "nR"], ans: 0, marks: 3 },
+      { q: "For adiabatic process: PVᵞ = ?", opts: ["0", "constant", "T", "nR"], ans: 1, marks: 3 },
+      { q: "γ (adiabatic index) = ?", opts: ["Cp/Cv", "Cv/Cp", "Cp-Cv", "Cp+Cv"], ans: 0, marks: 3 },
+      { q: "For a monoatomic ideal gas, γ = ?", opts: ["5/3", "7/5", "4/3", "3/2"], ans: 0, marks: 3 },
+      { q: "For a diatomic ideal gas, γ = ?", opts: ["5/3", "7/5", "4/3", "3/2"], ans: 1, marks: 3 },
+      { q: "Cp - Cv = ? for an ideal gas", opts: ["0", "R", "nR", "γR"], ans: 1, marks: 3 },
+      { q: "Work done by gas in isothermal expansion: W = ?", opts: ["nRT ln(V₂/V₁)", "PΔV", "0", "nRTΔV"], ans: 0, marks: 3 },
+      { q: "Internal energy of an ideal gas depends on:", opts: ["Only temperature", "Only pressure", "Only volume", "Temperature and pressure"], ans: 0, marks: 3 },
+      { q: "A heat engine works between:", opts: ["Two reservoirs at same temperature", "Hot and cold reservoirs", "Single reservoir", "Vacuum"], ans: 1, marks: 3 },
+      { q: "The Carnot engine is:", opts: ["A real engine", "The most efficient possible engine between given temperatures", "A theoretical impossible engine", "Only works in vacuum"], ans: 1, marks: 3 },
+      { q: "Entropy S = ?", opts: ["Q/T", "QT", "Q×W", "T/Q"], ans: 0, marks: 4 },
+      { q: "For a reversible process, ΔS_universe = ?", opts: ["Positive", "Negative", "Zero", "Maximum"], ans: 2, marks: 4 },
+      { q: "For an irreversible process, ΔS_universe > ?", opts: ["0", "1", "-1", "Undefined"], ans: 0, marks: 4 },
+      { q: "Heat engine efficiency cannot exceed Carnot efficiency because:", opts: ["It's a mathematical limit", "Second law of thermodynamics", "First law", "Third law"], ans: 1, marks: 4 },
+      { q: "In a free expansion of gas into vacuum: W = ?", opts: ["PΔV", "0 (against vacuum)", "Negative", "Maximum"], ans: 1, marks: 4 },
+      { q: "For free expansion of ideal gas: ΔU = ?, ΔT = ?", opts: ["0, 0", "Positive, positive", "Negative, negative", "0, positive"], ans: 0, marks: 4 },
+      { q: "The first law is also called:", opts: ["Law of entropy", "Law of conservation of energy", "Law of equilibrium", "Law of temperature"], ans: 1, marks: 4 },
+      { q: "PV diagram area gives:", opts: ["Internal energy", "Work done by the gas", "Heat exchanged", "Entropy change"], ans: 1, marks: 4 },
+      { q: "In an isobaric process: W = ?", opts: ["PΔV", "0", "nRΔT", "Both A and C (PΔV = nRΔT)"], ans: 3, marks: 4 },
+      { q: "For compression (work done ON gas), W is:", opts: ["Positive", "Negative", "Zero", "Depends on convention (usually positive)"], ans: 3, marks: 4 },
+      { q: "A perpetual motion machine of first kind violates:", opts: ["Zeroth law", "First law", "Second law", "Third law"], ans: 1, marks: 4 },
+      { q: "A perpetual motion machine of second kind violates:", opts: ["Zeroth law", "First law", "Second law", "Third law"], ans: 2, marks: 4 },
+      { q: "The efficiency of Carnot engine with T_H = 600K, T_C = 300K:", opts: ["25%", "50%", "75%", "100%"], ans: 1, marks: 4 },
+      { q: "Entropy is a ___ function:", opts: ["Path function", "State function", "Process function", "Force function"], ans: 1, marks: 4 },
+      { q: "For ideal gas at constant T: ΔU = ?", opts: ["nCvΔT", "0 (constant T)", "nCpΔT", "PV"], ans: 1, marks: 4 },
+      { q: "Joule-Thomson effect: gas cools when:", opts: ["Compressed", "Expanded through porous plug", "Heated", "At high pressure"], ans: 1, marks: 4 },
+      { q: "For an ideal gas, Joule-Thomson coefficient μJT = ?", opts: ["Positive", "Negative", "Zero", "Depends on gas"], ans: 2, marks: 4 },
+      { q: "The heat absorbed in isobaric process: Q = ?", opts: ["nCvΔT", "nCpΔT", "nRΔT", "0"], ans: 1, marks: 4 },
+      { q: "Heat absorbed in isochoric process: Q = ?", opts: ["nCpΔT", "nCvΔT", "nRΔT", "0"], ans: 1, marks: 4 },
+      { q: "For n moles of ideal gas: PV = ?", opts: ["nRT", "RT", "NkT", "Both A and C equivalent"], ans: 3, marks: 4 },
+      { q: "Boltzmann constant k = R/NA ≈ ?", opts: ["1.38 × 10⁻²³ J/K", "8.314 J/(mol·K)", "6.022 × 10²³", "1.6 × 10⁻¹⁹ C"], ans: 0, marks: 5 },
+      { q: "The coefficient of performance (COP) of refrigerator = ?", opts: ["T_C/(T_H-T_C)", "T_H/(T_H-T_C)", "η", "1/η"], ans: 0, marks: 5 },
+      { q: "Entropy of universe for any spontaneous process:", opts: ["Decreases", "Increases", "Stays same", "Cannot be determined"], ans: 1, marks: 5 },
+      { q: "In adiabatic free expansion: Q=0, W=0, so ΔU = ?", opts: ["0 (for ideal gas)", "Positive", "Negative", "nCvΔT"], ans: 0, marks: 5 },
+      { q: "The third law of thermodynamics states:", opts: ["Energy is conserved", "Entropy is maximum at absolute zero", "Entropy approaches zero as T approaches 0K", "Perpetual motion is possible"], ans: 2, marks: 5 },
+      { q: "For isothermal process of ideal gas: ΔU = ?, Q = ?, W = ?", opts: ["0, W, nRT ln(V₂/V₁)", "0, 0, 0", "nCvΔT, nCpΔT, PΔV", "All positive"], ans: 0, marks: 5 },
+      { q: "In which process is work done maximum for same initial/final states?", opts: ["Isochoric", "Isothormal expansion", "Adiabatic", "All same (state function)"], ans: 3, marks: 5 },
+      { q: "Which is a state function?", opts: ["Work (W)", "Heat (Q)", "Internal energy (U)", "Both W and Q"], ans: 2, marks: 5 },
+      { q: "For Carnot engine: Q_H/T_H = ?", opts: ["Q_C/T_C", "0", "Q_H+Q_C", "η"], ans: 0, marks: 5 },
+      { q: "In a cyclic process on a PV diagram, the net work done equals:", opts: ["Zero always", "Area enclosed by the cycle", "PΔV", "nRΔT"], ans: 1, marks: 5 },
+    ]
+  },
+  {
+    id: 13,
+    name: "Kinetic Theory",
+    icon: "⚛️",
+    color: "#10b981",
+    questions: [
+      { q: "Kinetic theory assumes gas molecules are:", opts: ["Stationary", "In constant random motion", "Arranged in order", "Very large"], ans: 1, marks: 3 },
+      { q: "The average kinetic energy of gas molecule: KE = ?", opts: ["½mv²", "3/2 kT", "Both A and B (equated)", "3kT"], ans: 2, marks: 3 },
+      { q: "RMS speed: vrms = ?", opts: ["√(3kT/m)", "√(8kT/πm)", "√(2kT/m)", "√(kT/m)"], ans: 0, marks: 3 },
+      { q: "Mean speed: v̄ = ?", opts: ["√(3RT/M)", "√(8RT/πM)", "√(2RT/M)", "√(RT/M)"], ans: 1, marks: 3 },
+      { q: "Most probable speed: vmp = ?", opts: ["√(3RT/M)", "√(8RT/πM)", "√(2RT/M)", "√(RT/M)"], ans: 2, marks: 3 },
+      { q: "The order of speeds: vrms > v̄ > ?", opts: ["vmp", "vmin", "vmax", "0"], ans: 0, marks: 3 },
+      { q: "Pressure of ideal gas: P = ?", opts: ["⅓ρv²rms", "½ρv²rms", "ρv²rms", "⅔ρv²rms"], ans: 0, marks: 3 },
+      { q: "Ideal gas equation PV = nRT. Here R = ?", opts: ["Gas constant (8.314 J/mol·K)", "Boltzmann constant", "Rydberg constant", "Resistance"], ans: 0, marks: 3 },
+      { q: "The equipartition theorem: Energy per degree of freedom = ?", opts: ["kT", "½kT", "kT/2", "Both B and C (same)"], ans: 3, marks: 3 },
+      { q: "A monoatomic gas has degrees of freedom:", opts: ["3", "5", "6", "7"], ans: 0, marks: 3 },
+      { q: "A diatomic gas has degrees of freedom (at room temp):", opts: ["3", "5", "6", "7"], ans: 1, marks: 3 },
+      { q: "Internal energy of monoatomic ideal gas: U = ?", opts: ["3/2 nRT", "5/2 nRT", "nRT", "3nRT"], ans: 0, marks: 3 },
+      { q: "Internal energy of diatomic ideal gas: U = ?", opts: ["3/2 nRT", "5/2 nRT", "7/2 nRT", "nRT"], ans: 1, marks: 3 },
+      { q: "Cv for monoatomic ideal gas = ?", opts: ["3R/2", "5R/2", "R", "7R/2"], ans: 0, marks: 3 },
+      { q: "Cp for monoatomic ideal gas = ?", opts: ["3R/2", "5R/2", "R", "7R/2"], ans: 1, marks: 3 },
+      { q: "Cv for diatomic ideal gas = ?", opts: ["3R/2", "5R/2", "R", "7R/2"], ans: 1, marks: 3 },
+      { q: "Cp for diatomic ideal gas = ?", opts: ["3R/2", "5R/2", "7R/2", "R"], ans: 2, marks: 3 },
+      { q: "Mean free path λ = ?", opts: ["1/(√2 nπd²)", "1/(nπd²)", "√2/(nπd²)", "nπd²/√2"], ans: 0, marks: 3 },
+      { q: "Collision frequency ν = ?", opts: ["v̄/λ", "λ/v̄", "v̄ × λ", "1/λ"], ans: 0, marks: 3 },
+      { q: "At higher temperature, vrms:", opts: ["Decreases", "Stays same", "Increases", "Becomes zero"], ans: 2, marks: 3 },
+      { q: "For same temperature, lighter molecules have:", opts: ["Lower vrms", "Same vrms", "Higher vrms", "Zero vrms"], ans: 2, marks: 4 },
+      { q: "If temperature doubles, vrms becomes:", opts: ["Double", "Half", "√2 times", "2√2 times"], ans: 2, marks: 4 },
+      { q: "The ratio vrms/v̄ = ?", opts: ["√(3π/8)", "√(8/3π)", "1", "√(3/8π)"], ans: 0, marks: 4 },
+      { q: "Maxwell-Boltzmann distribution gives the distribution of:", opts: ["Speeds of gas molecules", "Energies only", "Masses", "Temperatures"], ans: 0, marks: 4 },
+      { q: "At higher T, the Maxwell distribution curve:", opts: ["Becomes taller and narrower", "Becomes shorter and broader", "Stays same", "Shifts to left"], ans: 1, marks: 4 },
+      { q: "The average KE is the same for all ideal gases at:", opts: ["Same pressure", "Same volume", "Same temperature", "Same density"], ans: 2, marks: 4 },
+      { q: "Graham's law of effusion: rate ∝ ?", opts: ["√M", "1/√M", "M", "1/M"], ans: 1, marks: 4 },
+      { q: "Ratio of effusion rates: r₁/r₂ = ?", opts: ["√(M₂/M₁)", "√(M₁/M₂)", "M₂/M₁", "M₁/M₂"], ans: 0, marks: 4 },
+      { q: "At STP, 1 mole of ideal gas occupies:", opts: ["22.4 L", "2.24 L", "224 L", "1 L"], ans: 0, marks: 4 },
+      { q: "Avogadro's number NA ≈ ?", opts: ["6.022 × 10²³ mol⁻¹", "6.022 × 10²² mol⁻¹", "6.022 × 10²⁴ mol⁻¹", "1.38 × 10⁻²³"], ans: 0, marks: 4 },
+      { q: "For ideal gas, internal energy depends only on:", opts: ["Pressure", "Volume", "Temperature", "All three"], ans: 2, marks: 4 },
+      { q: "The kinetic theory gives PV = ?", opts: ["⅓Nmv²rms", "½Nmv²", "Nmv²", "⅔Nmv²"], ans: 0, marks: 4 },
+      { q: "Ideal gas assumption: intermolecular forces are:", opts: ["Maximum", "Minimum (negligible)", "Attractive only", "Repulsive only"], ans: 1, marks: 4 },
+      { q: "Real gas deviates from ideal behavior at:", opts: ["High T and low P", "Low T and high P", "All conditions", "Never"], ans: 1, marks: 4 },
+      { q: "Van der Waals equation: (P+a/V²)(V-b) = ?", opts: ["0", "RT", "nRT", "PV"], ans: 1, marks: 4 },
+      { q: "In Van der Waals eq, 'a' corrects for:", opts: ["Molecular volume", "Intermolecular forces", "Temperature", "Pressure"], ans: 1, marks: 4 },
+      { q: "In Van der Waals eq, 'b' corrects for:", opts: ["Molecular volume (finite size)", "Intermolecular forces", "Temperature", "Pressure"], ans: 0, marks: 4 },
+      { q: "The pressure of gas on walls is due to:", opts: ["Gravity", "Collisions of molecules with walls", "Electromagnetic forces", "Nuclear forces"], ans: 1, marks: 4 },
+      { q: "If volume of container doubles at constant T, pressure:", opts: ["Doubles", "Halves", "Stays same", "Becomes zero"], ans: 1, marks: 4 },
+      { q: "Boyle's law: at constant T, PV = ?", opts: ["constant", "0", "T", "nR"], ans: 0, marks: 4 },
+      { q: "Charles's law: at constant P, V/T = ?", opts: ["constant", "0", "P", "nR"], ans: 0, marks: 5 },
+      { q: "Gay-Lussac's law: at constant V, P/T = ?", opts: ["constant", "0", "V", "nR"], ans: 0, marks: 5 },
+      { q: "The Dalton's law states: total pressure = ?", opts: ["Sum of partial pressures", "Product of partial pressures", "Maximum partial pressure", "Minimum partial pressure"], ans: 0, marks: 5 },
+      { q: "RMS speed of O₂ vs N₂ at same T. O₂ is:", opts: ["Faster", "Slower (heavier)", "Same speed", "Cannot compare"], ans: 1, marks: 5 },
+      { q: "The number density n = N/V. From kinetic theory: P = ?", opts: ["⅓nkT", "⅓nmv²rms", "nkT", "Both B and C (since ½mv²rms = 3/2 kT)"], ans: 3, marks: 5 },
+      { q: "Specific heat at constant volume Cv = ?", opts: ["f/2 × R (per mole)", "(f+2)/2 × R", "R", "fR"], ans: 0, marks: 5 },
+      { q: "For a gas with f degrees of freedom: γ = ?", opts: ["(f+2)/f", "f/(f+2)", "(f-2)/f", "f/(f-2)"], ans: 0, marks: 5 },
+      { q: "Temperature is a measure of:", opts: ["Total kinetic energy", "Average kinetic energy of molecules", "Number of molecules", "Pressure"], ans: 1, marks: 5 },
+      { q: "At absolute zero (0 K), gas molecules:", opts: ["Move fastest", "Have zero kinetic energy", "Disappear", "Have maximum energy"], ans: 1, marks: 5 },
+      { q: "Partial pressure of a gas in mixture: Pᵢ = ?", opts: ["xᵢP (mole fraction × total P)", "P/n", "nᵢRT/V", "Both A and C"], ans: 3, marks: 5 },
+    ]
+  },
+  {
+    id: 14,
+    name: "Oscillations",
+    icon: "〰️",
+    color: "#6366f1",
+    questions: [
+      { q: "Simple Harmonic Motion (SHM) requires restoring force F ∝ ?", opts: ["-x (proportional to and opposite to displacement)", "x²", "constant", "1/x"], ans: 0, marks: 3 },
+      { q: "The time period of a simple pendulum: T = ?", opts: ["2π√(L/g)", "2π√(g/L)", "π√(L/g)", "2π√(L/g²)"], ans: 0, marks: 3 },
+      { q: "Angular frequency ω = ?", opts: ["2π/T", "T/2π", "2πf", "Both A and C"], ans: 3, marks: 3 },
+      { q: "For SHM: x(t) = A sin(ωt + φ). A is:", opts: ["Angular frequency", "Phase", "Amplitude", "Time period"], ans: 2, marks: 3 },
+      { q: "Velocity in SHM: v = ?", opts: ["Aω cos(ωt + φ)", "Aω sin(ωt + φ)", "-Aω sin(ωt + φ)", "Aω²cos(ωt)"], ans: 0, marks: 3 },
+      { q: "Maximum velocity in SHM: vmax = ?", opts: ["Aω", "Aω²", "A/ω", "ω/A"], ans: 0, marks: 3 },
+      { q: "Maximum acceleration in SHM: amax = ?", opts: ["Aω", "Aω²", "A/ω²", "ω²/A"], ans: 1, marks: 3 },
+      { q: "The time period of spring-mass system: T = ?", opts: ["2π√(m/k)", "2π√(k/m)", "π√(m/k)", "2π√(m/k²)"], ans: 0, marks: 3 },
+      { q: "At mean position in SHM:", opts: ["Velocity = 0, acceleration = max", "Velocity = max, acceleration = 0", "Both are zero", "Both are maximum"], ans: 1, marks: 3 },
+      { q: "At extreme position in SHM:", opts: ["Velocity = 0, acceleration = max", "Velocity = max, acceleration = 0", "Both are zero", "Both are maximum"], ans: 0, marks: 3 },
+      { q: "Total energy in SHM: E = ?", opts: ["½kA²", "½mω²A²", "Both A and B (equivalent)", "½mv²"], ans: 2, marks: 3 },
+      { q: "PE in SHM: PE = ?", opts: ["½kx²", "½kA²", "½mv²", "½mω²A²"], ans: 0, marks: 3 },
+      { q: "KE in SHM: KE = ?", opts: ["½k(A²-x²)", "½mω²(A²-x²)", "Both A and B", "½kA²"], ans: 2, marks: 3 },
+      { q: "For SHM, which is correct?", opts: ["v² = ω²(A²-x²)", "v = ω√(A²-x²)", "Both A and B", "Neither"], ans: 2, marks: 3 },
+      { q: "Frequency f = ?", opts: ["1/T", "T", "ω/2π", "Both A and C"], ans: 3, marks: 3 },
+      { q: "In a simple pendulum, the restoring force is:", opts: ["mg", "mg sinθ (for small θ)", "mg cosθ", "mg tanθ"], ans: 1, marks: 3 },
+      { q: "For large angle oscillation of pendulum, motion is:", opts: ["SHM", "Not exactly SHM", "Stopped", "Uniform motion"], ans: 1, marks: 3 },
+      { q: "Resonance occurs when:", opts: ["Driving frequency = natural frequency", "Amplitude = 0", "Damping = 0", "Force = 0"], ans: 0, marks: 3 },
+      { q: "At resonance, amplitude is:", opts: ["Minimum", "Maximum", "Zero", "Equal to driving amplitude"], ans: 1, marks: 3 },
+      { q: "Damped oscillation: amplitude:", opts: ["Increases with time", "Stays constant", "Decreases with time", "Becomes negative"], ans: 2, marks: 3 },
+      { q: "Critical damping occurs when:", opts: ["System oscillates forever", "System returns to equilibrium in shortest time without oscillating", "System never returns", "Amplitude increases"], ans: 1, marks: 4 },
+      { q: "The phase difference between displacement and velocity in SHM:", opts: ["0", "π/4", "π/2", "π"], ans: 2, marks: 4 },
+      { q: "The phase difference between displacement and acceleration in SHM:", opts: ["0", "π/2", "π", "2π"], ans: 2, marks: 4 },
+      { q: "Two SHM of same frequency but phase difference φ. Resultant amplitude:", opts: ["A₁+A₂", "|A₁-A₂|", "√(A₁²+A₂²+2A₁A₂cosφ)", "A₁×A₂"], ans: 2, marks: 4 },
+      { q: "For constructive interference (φ=0): A = ?", opts: ["A₁+A₂", "|A₁-A₂|", "√(A₁²+A₂²)", "0"], ans: 0, marks: 4 },
+      { q: "For destructive interference (φ=π): A = ?", opts: ["A₁+A₂", "|A₁-A₂|", "√(A₁²+A₂²)", "0 always"], ans: 1, marks: 4 },
+      { q: "The time period of a pendulum of length L on a planet with g': T = ?", opts: ["2π√(L/g')", "2π√(L/g)", "2π√(g'/L)", "T_earth × √(g/g')"], ans: 0, marks: 4 },
+      { q: "If pendulum length doubles, T becomes:", opts: ["Double", "Half", "√2 times", "1/√2 times"], ans: 2, marks: 4 },
+      { q: "Spring constant k has SI unit:", opts: ["N/m", "N·m", "kg/m", "N/m²"], ans: 0, marks: 4 },
+      { q: "Two springs in parallel with spring constants k₁, k₂. Effective k:", opts: ["k₁+k₂", "k₁k₂/(k₁+k₂)", "k₁-k₂", "(k₁+k₂)/2"], ans: 0, marks: 4 },
+      { q: "Two springs in series. Effective k:", opts: ["k₁+k₂", "k₁k₂/(k₁+k₂)", "k₁-k₂", "(k₁+k₂)/2"], ans: 1, marks: 4 },
+      { q: "Energy in SHM is conserved if:", opts: ["No damping", "Damping is present", "Driving force is applied", "Always"], ans: 0, marks: 4 },
+      { q: "The velocity at x = A/2 in SHM:", opts: ["vmax/2", "vmax × √3/2", "0", "vmax"], ans: 1, marks: 4 },
+      { q: "Beat frequency = ?", opts: ["|f₁-f₂|", "f₁+f₂", "f₁×f₂", "(f₁+f₂)/2"], ans: 0, marks: 4 },
+      { q: "The equation of SHM: a = ?", opts: ["-ω²x", "ω²x", "-ωx", "ωx²"], ans: 0, marks: 4 },
+      { q: "For a spring-mass system, T is independent of:", opts: ["Mass", "Spring constant", "Amplitude", "Both C (amplitude)"], ans: 2, marks: 4 },
+      { q: "For a simple pendulum, T is independent of:", opts: ["Length", "g", "Amplitude (for small angles)", "Mass of bob"], ans: 3, marks: 4 },
+      { q: "The restoring force in spring: F = ?", opts: ["-kx", "kx", "-kx²", "k/x"], ans: 0, marks: 4 },
+      { q: "Time period in seconds for pendulum of L=1m on Earth:", opts: ["About 2 seconds", "About 1 second", "About 0.5 second", "About 4 seconds"], ans: 0, marks: 4 },
+      { q: "At x = 0 (mean position) in SHM, PE = ?", opts: ["Maximum", "Zero (minimum)", "½kA²", "Undefined"], ans: 1, marks: 4 },
+      { q: "At x = A (extreme) in SHM, KE = ?", opts: ["Maximum", "Zero", "½kA²", "Undefined"], ans: 1, marks: 5 },
+      { q: "Forced oscillation frequency equals:", opts: ["Natural frequency", "Driving frequency", "Sum of both", "Difference"], ans: 1, marks: 5 },
+      { q: "Quality factor Q of oscillator measures:", opts: ["Amplitude only", "How many oscillations before damping reduces amplitude significantly", "Frequency only", "Period only"], ans: 1, marks: 5 },
+      { q: "If mass doubles in spring-mass system, T becomes:", opts: ["Double", "Half", "√2 times", "1/√2 times"], ans: 2, marks: 5 },
+      { q: "If spring constant doubles, T becomes:", opts: ["Double", "Half", "√2 times", "1/√2 times"], ans: 3, marks: 5 },
+      { q: "The energy at any point in undamped SHM: E = ?", opts: ["½kx² + ½mv²", "½kA² (constant)", "Both A and B (A varies, B is total)", "0"], ans: 2, marks: 5 },
+      { q: "Average KE = Average PE in SHM = ?", opts: ["¼kA²", "½kA²", "kA²", "0"], ans: 0, marks: 5 },
+      { q: "For a conical pendulum, the time period: T = ?", opts: ["2π√(L cosθ/g)", "2π√(L/g)", "2π√(L sinθ/g)", "2π√(g/L)"], ans: 0, marks: 5 },
+      { q: "A spring of constant k is cut into two equal halves. The spring constant of each half is:", opts: ["k/2", "k", "2k", "k/4"], ans: 2, marks: 5 },
+      { q: "The time period of a simple pendulum does not depend on:", opts: ["Length of pendulum", "Acceleration due to gravity", "Mass of the bob", "Amplitude (for small angles)"], ans: 3, marks: 5 },
+    ]
+  }
+];
+    </script>
+
+    <script>
+        // App state
+        let currentScreen = 'home';
+        let selectedChapter = null;
+        let questions = [];
+        let currentQ = 0;
+        let selectedAns = null;
+        let answers = [];
+        let progress = JSON.parse(localStorage.getItem('quizProgress') || '{}');
+
+        // Utility functions
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function totalMarksForChapter(ch) {
+            return ch.questions.reduce((sum, q) => sum + q.marks, 0);
+        }
+
+        function saveProgress() {
+            localStorage.setItem('quizProgress', JSON.stringify(progress));
+        }
+
+        // Screen management
+        function showScreen(screen) {
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.add('hidden');
+            
+            if (screen === 'home') {
+                document.getElementById('homeScreen').classList.remove('hidden');
+                renderChapters();
+            } else if (screen === 'quiz') {
+                document.getElementById('quizScreen').classList.remove('hidden');
+            } else if (screen === 'results') {
+                document.getElementById('resultsScreen').classList.remove('hidden');
+            }
+            currentScreen = screen;
+        }
+
+        // Render chapters
+        function renderChapters() {
+            const grid = document.getElementById('chapterGrid');
+            const completedCount = Object.keys(progress).length;
+            document.getElementById('completedCount').textContent = completedCount;
+            
+            grid.innerHTML = CHAPTERS.map(ch => {
+                const done = progress[ch.id];
+                const totalMarks = totalMarksForChapter(ch);
+                return `
+                    <div class="chapter-card" onclick="startQuiz(${ch.id})" style="border-color: ${done ? ch.color + '40' : 'rgba(255,255,255,0.065)'}">
+                        ${done ? `<div class="chapter-badge">✓ ${done.marksEarned}/${done.totalMarks}</div>` : ''}
+                        <div class="chapter-icon">${ch.icon}</div>
+                        <div class="chapter-num" style="color: ${ch.color};">Ch ${ch.id}</div>
+                        <div class="chapter-name">${ch.name}</div>
+                        <div class="chapter-meta">
+                            <span style="color: #64748b;">${ch.questions.length} Qs</span>
+                            <span style="color: ${ch.color}; font-weight: 600;">Total: ${totalMarks} marks</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Start quiz
+        function startQuiz(chapterId) {
+            selectedChapter = CHAPTERS.find(ch => ch.id === chapterId);
+            const shuffledQs = shuffle(selectedChapter.questions);
+            questions = shuffledQs.map(q => {
+                const indices = [0, 1, 2, 3];
+                const shuffledIdx = shuffle(indices);
+                const newOpts = shuffledIdx.map(i => q.opts[i]);
+                const newAns = shuffledIdx.indexOf(q.ans);
+                return { ...q, opts: newOpts, ans: newAns };
+            });
+            currentQ = 0;
+            selectedAns = null;
+            answers = [];
+            showScreen('quiz');
+            renderQuestion();
+        }
+
+        // Render question
+        function renderQuestion() {
+            const q = questions[currentQ];
+            const marksEarnedSoFar = answers.reduce((s, a) => s + (a.selected === a.correct ? a.marks : 0), 0);
+            const totalMarksSoFar = answers.reduce((s, a) => s + a.marks, 0);
+            const correctCount = answers.filter(a => a.selected === a.correct).length;
+            
+            const marksGradient = q.marks === 5 ? 'linear-gradient(135deg, #f59e0b, #ef4444)' :
+                                  q.marks === 4 ? 'linear-gradient(135deg, #8b5cf6, #6366f1)' :
+                                  'linear-gradient(135deg, #10b981, #3b82f6)';
+            
+            document.getElementById('quizScreen').innerHTML = `
+                <div class="quiz-header">
+                    <button class="btn" onclick="showScreen('home')">← Back</button>
+                    <div style="font-size: 12px; color: #64748b;">Q ${currentQ + 1} of ${questions.length}</div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${(currentQ / questions.length) * 100}%; background: ${selectedChapter.color};"></div>
+                </div>
+
+                <div class="score-ticker">
+                    <div class="chapter-badge-quiz">
+                        <span>${selectedChapter.icon}</span>
+                        <span style="font-size: 11px; color: ${selectedChapter.color}; font-weight: 600;">${selectedChapter.name}</span>
+                    </div>
+                    <div class="score-group">
+                        <div class="score-item">
+                            <div class="score-label">Marks</div>
+                            <div class="score-value" style="color: #f59e0b;">${marksEarnedSoFar}<span style="color: #64748b; font-weight: 400;">/${totalMarksSoFar}</span></div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-label">Correct</div>
+                            <div class="score-value" style="color: #60a5fa;">${correctCount}<span style="color: #64748b; font-weight: 400;">/${answers.length}</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="marks-badge">
+                        <span style="background: ${marksGradient};">🏅 ${q.marks} Marks</span>
+                    </div>
+                    <p class="question-text">${q.q}</p>
+                </div>
+
+                <div class="options" id="optionsContainer">
+                    ${q.opts.map((opt, idx) => `
+                        <div class="option" id="option${idx}" onclick="handleSelect(${idx})">
+                            <span class="option-letter">${String.fromCharCode(65 + idx)}</span>
+                            <span class="option-text">${opt}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div id="feedbackContainer"></div>
+            `;
+        }
+
+        // Handle answer selection
+        function handleSelect(idx) {
+            if (selectedAns !== null) return;
+            selectedAns = idx;
+            answers.push({
+                selected: idx,
+                correct: questions[currentQ].ans,
+                marks: questions[currentQ].marks
+            });
+
+            const q = questions[currentQ];
+            
+            // Update option styles
+            document.querySelectorAll('.option').forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (i === q.ans) {
+                    opt.classList.add('correct');
+                } else if (i === idx && i !== q.ans) {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            // Show feedback
+            const isCorrect = idx === q.ans;
+            const feedbackHTML = `
+                <div class="feedback ${isCorrect ? 'correct' : 'wrong'}">
+                    <span class="feedback-text">
+                        ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
+                        ${!isCorrect ? `<span style="font-size: 11.5px; color: #94a3b8; font-weight: 400; margin-left: 6px;">Answer: ${String.fromCharCode(65 + q.ans)}</span>` : ''}
+                    </span>
+                    <span class="marks-earned" style="background: ${isCorrect ? 'rgba(245,158,11,0.2)' : 'rgba(100,116,139,0.3)'}; color: ${isCorrect ? '#f59e0b' : '#64748b'};">
+                        ${isCorrect ? `+${q.marks}` : '+0'} marks
+                    </span>
+                </div>
+                <div id="explainerContainer"></div>
+                <button class="btn-primary" style="background: ${selectedChapter.color};" onclick="nextQuestion()">
+                    ${currentQ + 1 < questions.length ? 'Next Question →' : 'View Results 🏆'}
+                </button>
+            `;
+            document.getElementById('feedbackContainer').innerHTML = feedbackHTML;
+            
+            // Load explanation
+            loadExplanation(q, idx, isCorrect);
+        }
+
+        // Load AI explanation (mock for standalone HTML)
+        async function loadExplanation(q, selectedIdx, isCorrect) {
+            const container = document.getElementById('explainerContainer');
+            container.innerHTML = `
+                <div class="explainer ${isCorrect ? 'correct' : 'wrong'}">
+                    <div class="explainer-header">
+                        <div class="explainer-title">
+                            <span style="font-size: 20px;">🤖</span>
+                            <div>
+                                <p class="explainer-status" style="color: ${isCorrect ? '#34d399' : '#f87171'};">
+                                    ${isCorrect ? '✓ CORRECT — Great job!' : '✗ LEARNING MOMENT'}
+                                </p>
+                                <p class="explainer-subtitle">AI Physics Tutor • ${selectedChapter.name}</p>
+                            </div>
+                        </div>
+                        <div style="background: ${q.marks === 5 ? 'linear-gradient(135deg, #f59e0b, #ef4444)' : q.marks === 4 ? 'linear-gradient(135deg, #8b5cf6, #6366f1)' : 'linear-gradient(135deg, #10b981, #3b82f6)'}; border-radius: 12px; padding: 4px 10px; font-size: 10px; font-weight: 700; color: #fff;">
+                            ${q.marks}-Mark Q
+                        </div>
+                    </div>
+                    <div class="loading">
+                        <div class="spinner">⚙️</div>
+                        <p style="margin: 8px 0 0; color: #94a3b8; font-size: 12px;">Preparing explanation...</p>
+                    </div>
+                </div>
+            `;
+
+            // Simulate AI explanation load
+            await new Promise(r => setTimeout(r, 1500));
+            
+            const explanation = isCorrect ? 
+                `✅ Excellent! You chose the correct answer.
+
+**Why this is correct:**
+${q.opts[q.ans]} is the right answer because this concept is fundamental to ${selectedChapter.name}.
+
+**Key Physics Concept:**
+This ${q.marks}-mark question tests your understanding of basic principles in physics.
+
+**Why other options are incorrect:**
+${q.opts.filter((_, i) => i !== q.ans).map((opt) => `• ${opt} - This is incorrect because it doesn't align with the physical law being tested.`).join('\n')}
+
+**Exam Tip:** Always remember to check units and fundamental definitions when solving such problems. Questions worth ${q.marks} marks typically require clear conceptual understanding.` :
+                `📚 Learning Moment!
+
+**Why your answer (${q.opts[selectedIdx]}) is incorrect:**
+This option might seem correct at first, but it misses the key physics principle being tested.
+
+**Why the correct answer (${q.opts[q.ans]}) is RIGHT:**
+${q.opts[q.ans]} correctly applies the fundamental concept of ${selectedChapter.name}. This is based on the physical laws governing this phenomenon.
+
+**Key Concept to Remember:**
+For ${q.marks}-mark questions like this, focus on understanding the underlying physics principles rather than memorizing facts.
+
+**Formula/Law:**
+Review the relevant equations and their applications in this chapter.
+
+**Exam Preparation Tip:**
+Practice similar problems and always write down what you know before selecting an answer. This helps avoid common misconceptions.
+
+**Common Student Mistakes:**
+Many students confuse related concepts. Make sure you understand the distinctions clearly.`;
+
+            container.innerHTML = `
+                <div class="explainer ${isCorrect ? 'correct' : 'wrong'}">
+                    <div class="explainer-header">
+                        <div class="explainer-title">
+                            <span style="font-size: 20px;">🤖</span>
+                            <div>
+                                <p class="explainer-status" style="color: ${isCorrect ? '#34d399' : '#f87171'};">
+                                    ${isCorrect ? '✓ CORRECT — Great job!' : '✗ LEARNING MOMENT'}
+                                </p>
+                                <p class="explainer-subtitle">AI Physics Tutor • ${selectedChapter.name}</p>
+                            </div>
+                        </div>
+                        <div style="background: ${q.marks === 5 ? 'linear-gradient(135deg, #f59e0b, #ef4444)' : q.marks === 4 ? 'linear-gradient(135deg, #8b5cf6, #6366f1)' : 'linear-gradient(135deg, #10b981, #3b82f6)'}; border-radius: 12px; padding: 4px 10px; font-size: 10px; font-weight: 700; color: #fff;">
+                            ${q.marks}-Mark Q
+                        </div>
+                    </div>
+                    
+                    <div class="quick-review">
+                        <div class="quick-review-title">📋 Quick Review</div>
+                        ${q.opts.map((opt, idx) => {
+                            const isThisCorrect = idx === q.ans;
+                            const wasSelected = idx === selectedIdx;
+                            return `
+                                <div class="review-option" style="
+                                    background: ${isThisCorrect ? 'rgba(16,185,129,0.15)' : wasSelected ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.03)'};
+                                    border-color: ${isThisCorrect ? 'rgba(16,185,129,0.3)' : wasSelected ? 'rgba(239,68,68,0.25)' : 'rgba(255,255,255,0.05)'};">
+                                    <span class="review-letter" style="color: ${isThisCorrect ? '#34d399' : wasSelected ? '#f87171' : '#64748b'};">
+                                        ${String.fromCharCode(65 + idx)}
+                                    </span>
+                                    <span class="review-text">${opt.substring(0, 50)}${opt.length > 50 ? '...' : ''}</span>
+                                    ${isThisCorrect ? '<span style="font-size: 12px;">✓</span>' : ''}
+                                    ${wasSelected && !isThisCorrect ? '<span style="font-size: 12px;">✗</span>' : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <div class="explanation-content">
+                        <div class="explanation-title">
+                            <span>💡</span>
+                            <span>Detailed Explanation</span>
+                        </div>
+                        <div class="explanation-text">${explanation}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Next question
+        function nextQuestion() {
+            if (currentQ + 1 < questions.length) {
+                currentQ++;
+                selectedAns = null;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show results
+        function showResults() {
+            const marksEarned = answers.reduce((s, a) => s + (a.selected === a.correct ? a.marks : 0), 0);
+            const totalMarks = answers.reduce((s, a) => s + a.marks, 0);
+            const correctCount = answers.filter(a => a.selected === a.correct).length;
+            const pct = Math.round((marksEarned / totalMarks) * 100);
+
+            // Save progress
+            progress[selectedChapter.id] = {
+                marksEarned: Math.max((progress[selectedChapter.id]?.marksEarned || 0), marksEarned),
+                totalMarks: totalMarks,
+                pct: Math.max((progress[selectedChapter.id]?.pct || 0), pct)
+            };
+            saveProgress();
+
+            const icon = pct >= 80 ? '🏆' : pct >= 60 ? '⭐' : pct >= 40 ? '👍' : '📚';
+            const color = pct >= 80 ? '#34d399' : pct >= 60 ? '#60a5fa' : '#f59e0b';
+
+            document.getElementById('resultsScreen').innerHTML = `
+                <div class="results">
+                    <div class="results-icon">${icon}</div>
+                    <h2 class="results-score" style="color: ${color};">${pct}%</h2>
+                    <p style="margin: 0 0 16px; color: #94a3b8; font-size: 13px;">${selectedChapter.name}</p>
+
+                    <div class="results-card">
+                        <div class="results-marks">
+                            <div>
+                                <div class="results-label">Marks Earned</div>
+                                <div class="results-value">
+                                    ${marksEarned}
+                                    <span style="font-size: 16px; color: #64748b; font-weight: 400;"> / ${totalMarks}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" style="background: ${selectedChapter.color};" onclick="startQuiz(${selectedChapter.id})">
+                        🔄 Retry Quiz
+                    </button>
+                    <button class="btn-secondary" onclick="showScreen('home')">
+                        ← Back to Chapters
+                    </button>
+                </div>
+            `;
+            showScreen('results');
+        }
+
+        // Initialize app
+        renderChapters();
+    </script>
+</body>
+</html>
